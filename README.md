@@ -41,9 +41,15 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 ### `npm run format`
 
+Launches the prettier runner.
+
 ### `npm run lint`
 
+Launches the eslint runner.
+
 ### `npm run fix`
+
+Launches the eslint runner and automatic fixes to code.
 
 ## Learn More
 
