@@ -1,10 +1,9 @@
-import React from 'react';
-import './App.scss';
+import React from "react";
+import "./App.scss";
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 function App() {
-  return (
-    <div></div>
-  );
+  return <div />;
 }
 
 export default App;
