@@ -42,7 +42,7 @@ const Currency: FC = () => {
       ))}
     </div>
   ) : (
-    <h5>LADING CURRENCY...</h5>
+    <h5>LOADING CURRENCY...</h5>
   );
 };
 
