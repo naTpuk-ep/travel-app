@@ -4,6 +4,7 @@ import routes from "../constants/routes";
 import "./App.scss";
 import Main from "../pages/Main";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 interface ICountryPageParams {
   countryId: string;
@@ -31,7 +32,9 @@ const App: React.FunctionComponent = () => {
           </Route>
         </Switch>
       </main>
-      {/* <footer></footer> */}
+      <footer>
+        <Footer />
+      </footer>
     </>
   );
 };
