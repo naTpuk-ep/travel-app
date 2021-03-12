@@ -9,13 +9,13 @@ enum ConvertsTo {
   RUB = "RUB",
 }
 
-interface Currencies {
+interface ICurrencies {
   [key: string]: number;
 }
 
 const Currency: FC = () => {
   const localCurrency = "GBP"; // from props
-  const [currencies, setCurrencies] = useState<Currencies>();
+  const [currencies, setCurrencies] = useState<ICurrencies>();
   console.log(currencies);
 
   useEffect(() => {
