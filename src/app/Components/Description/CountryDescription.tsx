@@ -55,7 +55,9 @@ const CountryDescription: React.FC = () => {
       <h2 className="description__capital">{`Capital: ${countryDesc?.capital}`}</h2>
       <p className="description__info">{countryDesc?.description}</p>
     </div>
-  ) : null;
+  ) : (
+    <div className="description">LOADING...</div>
+  );
 };
 
 export default CountryDescription;
