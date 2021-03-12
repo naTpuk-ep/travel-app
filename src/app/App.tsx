@@ -2,10 +2,8 @@ import * as React from "react";
 import { Route, Switch, useParams } from "react-router-dom";
 import routes from "../constants/routes";
 import "./App.scss";
-
-const MainPage: React.FunctionComponent = () => {
-  return <h1>Home</h1>;
-};
+import Main from "../pages/Main";
+import Header from "../components/Header";
 
 interface ICountryPageParams {
   countryId: string;
@@ -20,11 +18,13 @@ const CountryPage: React.FunctionComponent = () => {
 const App: React.FunctionComponent = () => {
   return (
     <>
-      {/* <header></header> */}
+      <header>
+        <Header />
+      </header>
       <main>
         <Switch>
           <Route exact path={routes.HOME}>
-            <MainPage />
+            <Main />
           </Route>
           <Route path={routes.COUNTRY}>
             <CountryPage />
