@@ -16,7 +16,7 @@ const CountryCard: React.FunctionComponent<ICountryCardProps> = (
   return (
     // eslint-disable-next-line no-underscore-dangle
     <Link to={`${routes.HOME}${countryData._id}`}>
-      {countryData.localizations.name}
+      {countryData.localizations.en.name}
     </Link>
   );
 };

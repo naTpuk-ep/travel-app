@@ -8,10 +8,21 @@ interface ICountryData {
   flag: string;
   imageUrl: string;
   localizations: {
-    capital: string;
-    description: string;
-    lang: string;
-    name: string;
+    de: {
+      capital: string;
+      description: string;
+      name: string;
+    };
+    en: {
+      capital: string;
+      description: string;
+      name: string;
+    };
+    ru: {
+      capital: string;
+      description: string;
+      name: string;
+    };
   };
   timezones: string[];
   videoUrl: string;
