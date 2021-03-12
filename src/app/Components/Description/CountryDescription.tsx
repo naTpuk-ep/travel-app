@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import "./Description.scss";
+import "./CountryDescription.scss";
 
-interface CountryDesc {
+interface ICountryDescription {
   name: string;
   flag: string;
   imageUrl: string;
@@ -11,8 +11,8 @@ interface CountryDesc {
   description: string;
 }
 
-const Description: React.FC = () => {
-  const [countryDesc, setCountryDesc] = useState<CountryDesc>();
+const CountryDescription: React.FC = () => {
+  const [countryDesc, setCountryDesc] = useState<ICountryDescription>();
 
   useEffect(() => {
     const getCountries = async () => {
@@ -38,24 +38,24 @@ const Description: React.FC = () => {
   }, []);
 
   return countryDesc ? (
-    <div className="desc">
+    <div className="description">
       <img
-        className="desc__img"
+        className="description__img"
         src={countryDesc?.imageUrl}
         alt={countryDesc?.name}
       />
-      <div className="desc__country">
+      <div className="description__country">
         <img
-          className="desc__flag"
+          className="description__flag"
           src={countryDesc?.flag}
           alt={countryDesc?.name}
         />
-        <h1 className="desc__name">{countryDesc?.name}</h1>
+        <h1 className="description__name">{countryDesc?.name}</h1>
       </div>
-      <h2 className="desc__capital">{`Capital: ${countryDesc?.capital}`}</h2>
-      <p className="desc__info">{countryDesc?.description}</p>
+      <h2 className="description__capital">{`Capital: ${countryDesc?.capital}`}</h2>
+      <p className="description__info">{countryDesc?.description}</p>
     </div>
   ) : null;
 };
 
-export default Description;
+export default CountryDescription;

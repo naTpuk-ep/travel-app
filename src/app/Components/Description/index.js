@@ -1,3 +1,3 @@
-import Description from "./Description";
+import CountryDescription from "./CountryDescription";
 
-export default Description;
+export default CountryDescription;
