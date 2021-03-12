@@ -1,9 +1,39 @@
-import React from "react";
+import * as React from "react";
+import { Route, Switch, useParams } from "react-router-dom";
+import routes from "../constants/routes";
 import "./App.scss";
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-function App() {
-  return <div />;
+const MainPage: React.FunctionComponent = () => {
+  return <h1>Home</h1>;
+};
+
+interface ICountryPageParams {
+  countryId: string;
 }
+
+const CountryPage: React.FunctionComponent = () => {
+  const { countryId } = useParams<ICountryPageParams>();
+
+  return <h1>Country: {countryId}</h1>;
+};
+
+const App: React.FunctionComponent = () => {
+  return (
+    <>
+      {/* <header></header> */}
+      <main>
+        <Switch>
+          <Route exact path={routes.HOME}>
+            <MainPage />
+          </Route>
+          <Route path={routes.COUNTRY}>
+            <CountryPage />
+          </Route>
+        </Switch>
+      </main>
+      {/* <footer></footer> */}
+    </>
+  );
+};
 
 export default App;

@@ -1,4 +1,4 @@
 const HOME = "/";
-const COUNTRY = "/:country";
+const COUNTRY = "/:countryId";
 
 export default { HOME, COUNTRY };
