@@ -2,7 +2,7 @@ import * as React from "react";
 import { Route, Switch, useParams } from "react-router-dom";
 import routes from "../constants/routes";
 import "./App.scss";
-import CountryDescription from "./Components/Description";
+import CountryDescription from "../components/CountryDescription";
 
 const MainPage: React.FunctionComponent = () => {
   return <h1>Home</h1>;
