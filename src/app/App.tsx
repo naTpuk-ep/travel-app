@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Route, Switch, useParams } from "react-router-dom";
+import Currency from "../components/Currency/Currency";
 import routes from "../constants/routes";
 import "./App.scss";
 
@@ -14,7 +15,12 @@ interface ICountryPageParams {
 const CountryPage: React.FunctionComponent = () => {
   const { countryId } = useParams<ICountryPageParams>();
 
-  return <h1>Country: {countryId}</h1>;
+  return (
+    <>
+      <h1>Country: {countryId}</h1>
+      <Currency />
+    </>
+  );
 };
 
 const App: React.FunctionComponent = () => {
