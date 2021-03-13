@@ -2,9 +2,10 @@ import * as React from "react";
 import { Route, Switch, useParams } from "react-router-dom";
 import routes from "../constants/routes";
 import "./App.scss";
+import Map from "../components/map/map";
 
 const MainPage: React.FunctionComponent = () => {
-  return <h1>Home</h1>;
+  return <Map />;
 };
 
 interface ICountryPageParams {
