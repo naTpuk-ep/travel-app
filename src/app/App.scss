@@ -6,9 +6,10 @@ header {
 main {
   height: 100%;
   flex: 1 0 auto;
+  display: flex;
 }
 
-footer {  
+footer {
   flex: 0 0 auto;
   background-color: rgb(87, 27, 143);
   color: #fff;
