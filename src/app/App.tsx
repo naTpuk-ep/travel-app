@@ -29,7 +29,7 @@ const App: React.FunctionComponent = () => {
         }}
       >
         <header>
-          <Header />
+          <Header isAuthenticated={isAuthenticated} />
         </header>
         <main>
           <Switch>
