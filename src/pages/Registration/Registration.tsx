@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import ImageUploader from "react-images-upload";
 import { Container, Form, Button } from "react-bootstrap";
 import useHttp from "../../hooks/http.hook";
 import "./Registration.scss";
+import AuthContext from "../../context/AuthContext";
 
 const Registration: React.FunctionComponent = () => {
-  const { loading, request, error, clearError } = useHttp();
+  const auth = useContext(AuthContext);
+  const { loading, request } = useHttp();
   const [errors, setErrors] = useState("");
   const [form, setForm] = useState({
     email: "",
@@ -26,6 +28,7 @@ const Registration: React.FunctionComponent = () => {
         { ...form }
       );
       setErrors("");
+      auth.login(data.token, data.userId, data.name, data.userImage);
     } catch (e) {
       setErrors(e.response.data.message);
     }

@@ -28,11 +28,16 @@ const Header: React.FunctionComponent<IHeaderProps> = (props: IHeaderProps) => {
       </LinkContainer>
       {isAuthenticated ? (
         <div className="header__authbar">
-          <Image
-            className="header__authbar-avatar"
-            src={auth.userImage[0]}
-            roundedCircle
-          />
+          {auth.userImage[0] ? (
+            <Image
+              className="header__authbar-avatar"
+              src={auth.userImage[0]}
+              roundedCircle
+            />
+          ) : (
+            ""
+          )}
+
           <div className="header__authbar-user">{auth.name}</div>
           <a
             href="/"
