@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
+import ImageUploader from "react-images-upload";
 import { Container, Form, Button } from "react-bootstrap";
 import useHttp from "../../hooks/http.hook";
+import "./Registration.scss";
 
 const Registration: React.FunctionComponent = () => {
   const { loading, request, error, clearError } = useHttp();
@@ -9,6 +11,7 @@ const Registration: React.FunctionComponent = () => {
     email: "",
     name: "",
     password: "",
+    userImage: [""],
   });
 
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,13 +31,17 @@ const Registration: React.FunctionComponent = () => {
     }
   };
 
+  const onDrop = (files: File[], picture: string[]) => {
+    setForm({ ...form, userImage: picture });
+  };
+
   return (
     <Container fluid className="pr-0 pl-0 mh-100 d-inline-block">
       <div className="auth-wrapper">
         <div className="auth-inner">
           <h3 className="mb-4">Sign Up</h3>
           <Form>
-            <Form.Group controlId="formBasicEmail">
+            <Form.Group controlId="email">
               <Form.Label>Email address</Form.Label>
               <Form.Control
                 value={form.email}
@@ -45,7 +52,7 @@ const Registration: React.FunctionComponent = () => {
                 isInvalid={!!errors}
               />
             </Form.Group>
-            <Form.Group controlId="formBasicEmail">
+            <Form.Group controlId="name">
               <Form.Label>Name</Form.Label>
               <Form.Control
                 value={form.name}
@@ -56,7 +63,7 @@ const Registration: React.FunctionComponent = () => {
                 isInvalid={!!errors}
               />
             </Form.Group>
-            <Form.Group controlId="formBasicPassword">
+            <Form.Group controlId="password">
               <Form.Label>Password</Form.Label>
               <Form.Control
                 value={form.password}
@@ -67,6 +74,16 @@ const Registration: React.FunctionComponent = () => {
                 isInvalid={!!errors}
               />
             </Form.Group>
+            <ImageUploader
+              withPreview
+              singleImage
+              withIcon
+              label="Max file size: 5mb, accepted: jpg|gif|png"
+              buttonText="Choose images"
+              onChange={onDrop}
+              imgExtension={[".jpg", ".gif", ".png", ".gif"]}
+              maxFileSize={5242880}
+            />
             <Form.Text className="text-danger txt-lg mb-2">{errors}</Form.Text>
             <Button
               onClick={registerHandler}
@@ -74,7 +91,7 @@ const Registration: React.FunctionComponent = () => {
               variant="primary"
               type="submit"
             >
-              Submit
+              Create profile
             </Button>
           </Form>
         </div>
