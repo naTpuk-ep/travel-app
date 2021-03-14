@@ -21,7 +21,7 @@ const Registration: React.FunctionComponent = () => {
   const registerHandler = async () => {
     try {
       const data = await request(
-        "http://localhost:3000/auth/register",
+        "https://rnovikov-travel-app-backend.herokuapp.com/auth/register",
         "POST",
         { ...form }
       );
@@ -86,6 +86,7 @@ const Registration: React.FunctionComponent = () => {
             />
             <Form.Text className="text-danger txt-lg mb-2">{errors}</Form.Text>
             <Button
+              block
               onClick={registerHandler}
               disabled={loading}
               variant="primary"

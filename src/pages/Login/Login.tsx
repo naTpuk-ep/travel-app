@@ -19,9 +19,13 @@ const Login: React.FunctionComponent = () => {
 
   const loginHandler = async () => {
     try {
-      const data = await request("http://localhost:3000/auth/login", "POST", {
-        ...form,
-      });
+      const data = await request(
+        "https://rnovikov-travel-app-backend.herokuapp.com/auth/login",
+        "POST",
+        {
+          ...form,
+        }
+      );
       auth.login(data.token, data.userId, data.name, data.userImage);
       setErrors("");
     } catch (e) {
@@ -59,6 +63,7 @@ const Login: React.FunctionComponent = () => {
             </Form.Group>
             <Form.Text className="text-danger txt-lg mb-2">{errors}</Form.Text>
             <Button
+              block
               onClick={loginHandler}
               disabled={loading}
               variant="primary"
