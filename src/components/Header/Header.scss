@@ -15,4 +15,16 @@
       font-weight: bold;
     }
   }
+
+  &__language {
+    margin-left: auto;
+    width: max-content;
+    text-transform: uppercase;
+    font-weight: bold;
+
+    & option {
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+  }
 }

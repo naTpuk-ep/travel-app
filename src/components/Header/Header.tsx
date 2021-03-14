@@ -1,7 +1,8 @@
 import * as React from "react";
-import { Container } from "react-bootstrap";
+import { Container, Form } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import routes from "../../constants/routes";
+import Language from "../../constants/languages";
 import "./Header.scss";
 
 const Header: React.FunctionComponent = () => {
@@ -12,6 +13,11 @@ const Header: React.FunctionComponent = () => {
           Travel <span className="header__logo-span">App</span>
         </h1>
       </LinkContainer>
+      <Form.Control size="sm" as="select" className="header__language">
+        <option>{Language.English}</option>
+        <option>{Language.Russian}</option>
+        <option>{Language.German}</option>
+      </Form.Control>
     </Container>
   );
 };
