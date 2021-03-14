@@ -20,7 +20,7 @@ const CountryCard: React.FunctionComponent<ICountryCardProps> = (
   return (
     <LinkContainer
       // eslint-disable-next-line no-underscore-dangle
-      to={`${routes.HOME}${countryData._id}`}
+      to={`${routes.HOME}country/${countryData._id}`}
       className="country-card"
     >
       <Card>
