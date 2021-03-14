@@ -3,7 +3,14 @@ import { createContext } from "react";
 type AuthContextState = {
   token: string;
   userId: string;
-  login: (jwtToken: string, id: string) => void;
+  name: string;
+  userImage: string[];
+  login: (
+    jwtToken: string,
+    id: string,
+    userName: string,
+    image: string[]
+  ) => void;
   logout: () => void;
   isAuthenticated: boolean;
 };
@@ -11,6 +18,8 @@ type AuthContextState = {
 const authContextDefaultValues: AuthContextState = {
   token: "",
   userId: "",
+  name: "",
+  userImage: [""],
   login: () => {},
   logout: () => {},
   isAuthenticated: false,
