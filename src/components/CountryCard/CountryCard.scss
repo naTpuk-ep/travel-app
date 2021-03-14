@@ -1,14 +1,14 @@
-@import "~bootstrap/scss/bootstrap";
+//@import "~bootstrap/scss/bootstrap";
 
 .country-card {
-  @extend .shadow-sm;
+  //@extend .shadow-sm;
   margin: 0 auto;
   width: 20rem;
   overflow: hidden;
   transition: all 0.5s ease;
 
   &:hover {
-    @extend .shadow-lg;
+    //@extend .shadow-lg;
     cursor: pointer;
   }
 
