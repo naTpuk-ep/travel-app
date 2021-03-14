@@ -2,6 +2,7 @@ import axios from "axios";
 /* eslint-disable no-param-reassign */
 import { useState, useCallback } from "react";
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 const useHttp = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);

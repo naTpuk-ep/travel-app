@@ -2,6 +2,7 @@ import { useState, useCallback, useEffect } from "react";
 
 const storageName = "userData";
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 const useAuth = () => {
   const [token, setToken] = useState<string>("");
   const [ready, setReady] = useState(false);

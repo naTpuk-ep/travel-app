@@ -10,8 +10,16 @@
     &:hover {
       cursor: pointer;
     }
+  }
 
-    &-span {
+  &__language {
+    margin-left: auto;
+    width: max-content;
+    text-transform: uppercase;
+    font-weight: bold;
+
+    & option {
+      text-transform: uppercase;
       font-weight: bold;
     }
   }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import ImageUploader from "react-images-upload";
 import { Container, Form, Button } from "react-bootstrap";
 import useHttp from "../../hooks/http.hook";

@@ -1,16 +1,21 @@
-import * as React from "react";
-import { useContext } from "react";
-import { Container, Button, Image, Col } from "react-bootstrap";
+import React, { ChangeEvent, useContext } from "react";
+import { Container, Form, Button, Image } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
-import routes from "../../constants/routes";
+import Language from "../../constants/languages";
+import LOCALIZATIONS from "../../assets/data/localizations";
+import LocalizationContext from "../../context/LocalizationContext";
 import AuthContext from "../../context/AuthContext";
+import routes from "../../constants/routes";
+
 import "./Header.scss";
 
 interface IHeaderProps {
+  changeLanguage: (language: Language) => void;
   isAuthenticated: boolean;
 }
 
 const Header: React.FunctionComponent<IHeaderProps> = (props: IHeaderProps) => {
+  const language = useContext(LocalizationContext);
   const auth = useContext(AuthContext);
   const { isAuthenticated } = props;
 
@@ -19,13 +24,26 @@ const Header: React.FunctionComponent<IHeaderProps> = (props: IHeaderProps) => {
     auth.logout();
   };
 
+  const handleChangeSelect = (event: ChangeEvent<{ value: string }>) => {
+    const value: Language = event.target.value as Language;
+    props.changeLanguage(value);
+  };
+
   return (
     <Container className="header">
       <LinkContainer to={routes.HOME}>
-        <h1 className="header__logo">
-          Travel <span className="header__logo-span">App</span>
-        </h1>
+        <h1 className="header__logo">{LOCALIZATIONS.header.logo[language]}</h1>
       </LinkContainer>
+      <Form.Control
+        onChange={handleChangeSelect}
+        size="sm"
+        as="select"
+        className="header__language"
+      >
+        <option value={Language.English}>{Language.English}</option>
+        <option value={Language.Russian}>{Language.Russian}</option>
+        <option value={Language.German}>{Language.German}</option>
+      </Form.Control>
       {isAuthenticated ? (
         <div className="header__authbar">
           {auth.userImage[0] ? (
@@ -37,7 +55,6 @@ const Header: React.FunctionComponent<IHeaderProps> = (props: IHeaderProps) => {
           ) : (
             ""
           )}
-
           <div className="header__authbar-user">{auth.name}</div>
           <a
             href="/"
