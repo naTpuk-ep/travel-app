@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Container } from "react-bootstrap";
+import { Container, CardColumns } from "react-bootstrap";
 import CountryCard from "../../components/CountryCard";
 import Loader from "../../components/Loader";
 import ICountryData from "../../models/country-data";
@@ -24,12 +24,14 @@ const Main: React.FunctionComponent = () => {
   }, []);
 
   return (
-    <Container>
+    <Container className="main-page">
       {isLoad ? (
-        countriesData.map((country) => {
-          // eslint-disable-next-line no-underscore-dangle
-          return <CountryCard key={country._id} countryData={country} />;
-        })
+        <CardColumns>
+          {countriesData.map((country) => {
+            // eslint-disable-next-line no-underscore-dangle
+            return <CountryCard key={country._id} countryData={country} />;
+          })}
+        </CardColumns>
       ) : (
         <Loader />
       )}

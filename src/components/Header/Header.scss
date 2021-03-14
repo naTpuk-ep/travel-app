@@ -1,0 +1,18 @@
+.header {
+  padding: 15px;
+  display: flex;
+  align-items: center;
+
+  &__logo {
+    margin: 0;
+    font-size: 2rem;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &-span {
+      font-weight: bold;
+    }
+  }
+}

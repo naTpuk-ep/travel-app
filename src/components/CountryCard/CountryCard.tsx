@@ -1,5 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Card } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 import routes from "../../constants/routes";
 import ICountryData from "../../models/country-data";
 import "./CountryCard.scss";
@@ -14,10 +15,24 @@ const CountryCard: React.FunctionComponent<ICountryCardProps> = (
   const { countryData } = props;
 
   return (
-    // eslint-disable-next-line no-underscore-dangle
-    <Link to={`${routes.HOME}country/${countryData._id}`}>
-      {countryData.localizations.en.name}
-    </Link>
+    <LinkContainer
+      // eslint-disable-next-line no-underscore-dangle
+      to={`${routes.HOME}${countryData._id}`}
+      className="country-card"
+    >
+      <Card>
+        <div className="country-card__img">
+          <Card.Img variant="top" src={countryData.imageUrl} />
+        </div>
+        <Card.Body>
+          <Card.Title>{countryData.localizations.en.name}</Card.Title>
+          <Card.Text>{countryData.localizations.en.description}</Card.Text>
+        </Card.Body>
+        <Card.Footer>
+          <small className="text-muted">Click to learn more</small>
+        </Card.Footer>
+      </Card>
+    </LinkContainer>
   );
 };
 
