@@ -5,6 +5,7 @@ import axios from "axios";
 import ICountryData from "../../models/country-data";
 import Loader from "../../components/Loader";
 import CountryDescription from "../../components/CountryDescription";
+import Currency from "../../components/Currency";
 
 interface ICountryPageParams {
   countryId: string;
@@ -30,7 +31,14 @@ const CountryPage: React.FunctionComponent = () => {
 
   return (
     <Container className="country-page">
-      {isLoad ? <CountryDescription countryData={countryData} /> : <Loader />}
+      {isLoad ? (
+        <>
+          <CountryDescription countryData={countryData} />
+          <Currency localCurrency={countryData?.currency} />
+        </>
+      ) : (
+        <Loader />
+      )}
     </Container>
   );
 };

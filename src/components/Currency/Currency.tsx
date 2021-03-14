@@ -1,50 +1,83 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable no-console */
 import axios from "axios";
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useCallback, useEffect, useState } from "react";
+import CurrencyConverts from "../../constants/currencyConverts";
 import Loader from "../Loader";
-
-enum ConvertsTo {
-  USD = "USD",
-  EUR = "EUR",
-  RUB = "RUB",
-}
+import "./Currency.scss";
 
 interface ICurrencies {
   [key: string]: number;
 }
 
-const Currency: FC = () => {
-  const localCurrency = "GBP"; // from props
-  const [currencies, setCurrencies] = useState<ICurrencies>();
-  console.log(currencies);
+interface IcurrencyProps {
+  localCurrency: string | undefined;
+}
+
+const Currency: FC<IcurrencyProps> = ({ localCurrency }: IcurrencyProps) => {
+  const [displayRates, setDisplayRates] = useState<ICurrencies>();
+  const [error, setError] = useState<string | null>();
+
+  const roundRatesValues = (value: number) => {
+    let roundCoefficient = 100;
+    if (value < 0.1) {
+      roundCoefficient = 10 ** (Math.ceil(1 / value).toString().length + 1);
+    }
+    return Math.round(value * roundCoefficient) / roundCoefficient;
+  };
+
+  const selectRates = useCallback((rates: ICurrencies, base: string) => {
+    const selectedRates = Object.assign(rates, {});
+    Object.keys(selectedRates).forEach((key: string) => {
+      selectedRates[key] = roundRatesValues(selectedRates[key]);
+      if (!(key in CurrencyConverts) || key === base) {
+        delete selectedRates[key];
+      }
+    });
+    return selectedRates;
+  }, []);
 
   useEffect(() => {
-    const getCurrencies = async (base: string) => {
-      const res = await axios.get(
-        `https://api.exchangeratesapi.io/latest?base=${base}`
-      );
-      const { rates } = res.data;
-      Object.keys(rates).forEach((key: string) => {
-        rates[key] = Math.round(rates[key] * 100) / 100;
-        if (!(key in ConvertsTo) || key === base) {
-          delete rates[key];
-        }
-      });
-      setCurrencies(rates);
+    const getRates = async (base: string) => {
+      const data = await axios
+        .get(`https://api.exchangeratesapi.io/latest?base=${base}`)
+        .then((response) => response.data)
+        .catch(() => {
+          setError("Error loading currency information");
+        });
+      if (data) {
+        const { rates } = data;
+        const selectedRates = selectRates(rates, base);
+        setDisplayRates(selectedRates);
+      }
     };
-    getCurrencies(localCurrency);
-  }, []);
-  return <Loader />;
-  // currencies ? (
-  //   <div className="currency">
-  //     <h4>{`Local currency: ${localCurrency}`}</h4>
-  //     {Object.keys(currencies).map((key: string, i: number) => (
-  //       <h5 key={i}>{`1${localCurrency} = ${currencies[key]}${key}`}</h5>
-  //     ))}
-  //   </div>
-  // ) : (
-  // );
+    if (localCurrency) {
+      getRates(localCurrency);
+    } else {
+      setError("Error loading currency information");
+    }
+  }, [localCurrency, selectRates]);
+  return (
+    <div className="currency">
+      {displayRates ? (
+        <>
+          <h5>{`Local currency: ${localCurrency}`}</h5>
+          {Object.keys(displayRates).map((key: string, i: number) => (
+            <div className="currency__item" key={i}>
+              <span>{`1 ${localCurrency}`}</span>
+              <span>=</span>
+              <span>{`${displayRates[key]} ${key}`}</span>
+            </div>
+          ))}
+        </>
+      ) : error ? (
+        <h6 className="error">{error}</h6>
+      ) : (
+        <Loader />
+      )}
+    </div>
+  );
 };
 
 export default Currency;
