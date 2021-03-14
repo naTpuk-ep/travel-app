@@ -37,11 +37,11 @@ const useAuth = () => {
   }, []);
 
   useEffect(() => {
-    // const data = JSON.parse(localStorage.getItem(storageName) || "{}");
-    // if (data && data.token) {
-    //   login(data.token, data.userId);
-    // }
-    // setReady(true);
+    const data = JSON.parse(localStorage.getItem(storageName) || "{}");
+    if (data && data.token) {
+      login(data.token, data.userId, data.name, data.userImage);
+    }
+    setReady(true);
   }, [login]);
 
   return { login, logout, token, userId, name, userImage, ready };
