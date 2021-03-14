@@ -2,6 +2,7 @@
 /* eslint-disable no-console */
 import axios from "axios";
 import React, { FC, useEffect, useState } from "react";
+import Loader from "../Loader";
 
 enum ConvertsTo {
   USD = "USD",
@@ -34,16 +35,16 @@ const Currency: FC = () => {
     };
     getCurrencies(localCurrency);
   }, []);
-  return currencies ? (
-    <div className="currency">
-      <h4>{`Local currency: ${localCurrency}`}</h4>
-      {Object.keys(currencies).map((key: string, i: number) => (
-        <h5 key={i}>{`1${localCurrency} = ${currencies[key]}${key}`}</h5>
-      ))}
-    </div>
-  ) : (
-    <h5>LOADING CURRENCY...</h5>
-  );
+  return <Loader />;
+  // currencies ? (
+  //   <div className="currency">
+  //     <h4>{`Local currency: ${localCurrency}`}</h4>
+  //     {Object.keys(currencies).map((key: string, i: number) => (
+  //       <h5 key={i}>{`1${localCurrency} = ${currencies[key]}${key}`}</h5>
+  //     ))}
+  //   </div>
+  // ) : (
+  // );
 };
 
 export default Currency;

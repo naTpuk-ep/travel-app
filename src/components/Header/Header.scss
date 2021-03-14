@@ -1,0 +1,66 @@
+.header {
+  padding: 15px;
+  display: flex;
+  align-items: center;
+
+  &__logo {
+    margin: 0;
+    font-size: 2rem;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__language {
+    margin-left: auto;
+    width: max-content;
+    text-transform: uppercase;
+    font-weight: bold;
+
+    & option {
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+  }
+
+  &__authbar{
+    display: flex;
+    margin-left: auto;
+    align-items: center;
+    justify-content:center;
+    column-gap: 10px;
+
+    font-size: 20px;
+
+    &-user{
+      text-align: center;
+    }
+
+    &-avatar{
+      width: 3rem;
+      height: 3rem;
+    }
+
+    &-link{
+      font-size: 18px;
+      text-decoration: underline;
+
+      &.signout{
+        color: inherit;
+        font-size: 14px;
+        &:visited{
+          text-decoration:none;
+        }
+        &:active {
+          text-decoration: none;
+        }
+      }
+
+      &:hover {
+        cursor: pointer;
+        opacity: .8;
+      }
+    }
+  }
+}

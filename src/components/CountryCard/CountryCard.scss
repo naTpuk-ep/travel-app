@@ -1,0 +1,31 @@
+//@import "~bootstrap/scss/bootstrap";
+
+.country-card {
+  //@extend .shadow-sm;
+  margin: 0 auto;
+  width: 20rem;
+  overflow: hidden;
+  transition: all 0.5s ease;
+
+  &:hover {
+    //@extend .shadow-lg;
+    cursor: pointer;
+  }
+
+  @media (max-width: 576px) {
+    width: 18rem;
+  }
+
+  &__img {
+    overflow: hidden;
+    height: 15rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    & > img {
+      width: max-content;
+      height: max-content;
+      transform: scale(0.6);
+    }
+  }  
+}
