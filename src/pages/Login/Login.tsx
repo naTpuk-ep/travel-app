@@ -6,7 +6,7 @@ import "../Registration/Registration.scss";
 
 const Login: React.FunctionComponent = () => {
   const auth = useContext(AuthContext);
-  const { loading, request, error, clearError } = useHttp();
+  const { loading, request } = useHttp();
   const [errors, setErrors] = useState("");
   const [form, setForm] = useState({
     email: "",
@@ -26,8 +26,8 @@ const Login: React.FunctionComponent = () => {
           ...form,
         }
       );
-      auth.login(data.token, data.userId, data.name, data.userImage);
       setErrors("");
+      auth.login(data.token, data.userId, data.name, data.userImage);
     } catch (e) {
       setErrors(e.response.data.message);
     }
