@@ -4,6 +4,7 @@ import { Container } from "react-bootstrap";
 import axios from "axios";
 import ICountryData from "../../models/country-data";
 import Loader from "../../components/Loader";
+import CountryDescription from "../../components/CountryDescription";
 
 interface ICountryPageParams {
   countryId: string;
@@ -29,11 +30,7 @@ const CountryPage: React.FunctionComponent = () => {
 
   return (
     <Container className="country-page">
-      {isLoad ? (
-        <h1>Country: {countryData?.localizations.en.name}</h1>
-      ) : (
-        <Loader />
-      )}
+      {isLoad ? <CountryDescription countryData={countryData} /> : <Loader />}
     </Container>
   );
 };

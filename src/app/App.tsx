@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import routes from "../constants/routes";
 import "./App.scss";
-// eslint-disable-next-line import/no-cycle
 import Main from "../pages/Main";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
