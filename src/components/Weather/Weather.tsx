@@ -25,7 +25,7 @@ const Weather: FC<IWeatherProps> = ({ countryData }: IWeatherProps) => {
         lang="en"
         locationLabel={countryData?.localizations.en.capital}
         unitsLabels={{ temperature: "C", windSpeed: "Km/h" }}
-        showForecast
+        showForecast={false}
       />
     </div>
   );
