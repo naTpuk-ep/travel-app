@@ -4,6 +4,7 @@ import { Container, Form, Button } from "react-bootstrap";
 import useHttp from "../../hooks/http.hook";
 import "./Registration.scss";
 import AuthContext from "../../context/AuthContext";
+import Loader from "../../components/Loader";
 
 const Registration: React.FunctionComponent = () => {
   const auth = useContext(AuthContext);
@@ -95,7 +96,13 @@ const Registration: React.FunctionComponent = () => {
               variant="primary"
               type="submit"
             >
-              Create profile
+              {loading ? (
+                <div className="loader-sm">
+                  <Loader />
+                </div>
+              ) : (
+                "Create profile"
+              )}
             </Button>
           </Form>
         </div>
