@@ -53,9 +53,9 @@ class Map extends React.Component<IProps, IState> {
     } = countryData!;
     const latitude = coordinates[0];
     const longitude = coordinates[1];
-    const copiedObject = JSON.parse(JSON.stringify(cData));
+    const copyObj = JSON.parse(JSON.stringify(cData));
     // eslint-disable-next-line
-    const info: any = copiedObject;
+    const info: any = copyObj;
     // eslint-disable-next-line
     const data: any = info[ISOCode].map((el: any) => {
       el[0].map((item: number[]) => {
