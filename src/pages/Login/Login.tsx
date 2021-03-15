@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Container, Form, Button } from "react-bootstrap";
+import Loader from "../../components/Loader";
 import AuthContext from "../../context/AuthContext";
 import useHttp from "../../hooks/http.hook";
 import "../Registration/Registration.scss";
@@ -37,7 +38,7 @@ const Login: React.FunctionComponent = () => {
     <Container fluid className="pr-0 pl-0 mh-100 d-inline-block">
       <div className="auth-wrapper">
         <div className="auth-inner">
-          <h3 className="mb-4">Sign Up</h3>
+          <h3 className="mb-4">Sign In</h3>
           <Form>
             <Form.Group controlId="email">
               <Form.Label>Email address</Form.Label>
@@ -69,7 +70,13 @@ const Login: React.FunctionComponent = () => {
               variant="primary"
               type="submit"
             >
-              Sign in
+              {loading ? (
+                <div className="loader-sm">
+                  <Loader />
+                </div>
+              ) : (
+                "Sign in"
+              )}
             </Button>
           </Form>
         </div>
