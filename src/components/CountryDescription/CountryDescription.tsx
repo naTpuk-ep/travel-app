@@ -2,6 +2,7 @@
 import React, { FC, useContext } from "react";
 import LocalizationContext from "../../context/LocalizationContext";
 import ICountryData from "../../models/country-data";
+import Time from "../Time";
 import "./CountryDescription.scss";
 
 interface ICountryDescriptionProps {
@@ -19,6 +20,7 @@ const CountryDescription: FC<ICountryDescriptionProps> = ({
     localizations: {
       [language]: { capital, name, description },
     },
+    timezones,
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   } = countryData!;
 
@@ -29,7 +31,10 @@ const CountryDescription: FC<ICountryDescriptionProps> = ({
         <img className="description__flag" src={flag} alt={name} />
         <h1 className="description__name">{name}</h1>
       </div>
-      <h2 className="description__capital">{`Capital: ${capital}`}</h2>
+      <div className="description__capital">
+        <h2 className="description__capital__name">{`Capital: ${capital}`}</h2>
+        <Time timezone={timezones[0]} />
+      </div>
       <p className="description__info">{description}</p>
     </div>
   );
