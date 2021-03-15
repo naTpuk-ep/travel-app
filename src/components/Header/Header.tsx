@@ -34,7 +34,7 @@ const Header: React.FunctionComponent<IHeaderProps> = (props: IHeaderProps) => {
       <Navbar expand="lg" bg="light" variant="light">
         <Navbar.Brand>
           <LinkContainer to={routes.HOME} className="header__logo">
-            <span>{LOCALIZATIONS.header.logo[language]}</span>
+            <h1>{LOCALIZATIONS.header.logo[language]}</h1>
           </LinkContainer>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -65,16 +65,20 @@ const Header: React.FunctionComponent<IHeaderProps> = (props: IHeaderProps) => {
                 className="header__authbar-link signout"
                 onClick={logoutHandler}
               >
-                Sign out
+                {LOCALIZATIONS.header.singOut[language]}
               </a>
             </div>
           ) : (
             <div className="header__authbar">
               <LinkContainer to={routes.SING_IN}>
-                <div className="header__authbar-link">Sign in</div>
+                <div className="header__authbar-link">
+                  {LOCALIZATIONS.header.singIn[language]}
+                </div>
               </LinkContainer>
               <LinkContainer to={routes.SING_UP}>
-                <Button variant="outline-light">Sign up</Button>
+                <Button variant="dark">
+                  {LOCALIZATIONS.header.singUp[language]}
+                </Button>
               </LinkContainer>
             </div>
           )}
