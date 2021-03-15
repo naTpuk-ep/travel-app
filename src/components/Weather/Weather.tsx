@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import ReactWeather, { useOpenWeather } from "react-open-weather";
 import ICountryData from "../../models/country-data";
+import "./Weather.scss";
 
 interface IWeatherProps {
   countryData: ICountryData | undefined;
@@ -13,7 +14,7 @@ const Weather: FC<IWeatherProps> = ({ countryData }: IWeatherProps) => {
     lat: countryData?.capitalLocation.coordinates[0],
     lon: countryData?.capitalLocation.coordinates[1],
     lang: "en",
-    unit: "metric", // values are (metric, standard, imperial)
+    unit: "metric",
   });
   return (
     <div className="weather">
