@@ -1,11 +1,6 @@
 .main-page {
-  padding-top: 15px;
-  padding-bottom: 15px;
-
-  &__cards {
-    display: grid;
-    grid-gap: 15px;
-  }
+  display: grid;
+  grid-gap: 15px;  
 
   // @media (max-width: 992px) {
   //   .card-columns {

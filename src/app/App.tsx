@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
+import { Container } from "react-bootstrap";
 import routes from "../constants/routes";
 import "./App.scss";
 import Main from "../pages/Main";
@@ -39,20 +40,22 @@ const App: React.FunctionComponent = () => {
             />
           </header>
           <main>
-            <Switch>
-              <Route exact path={routes.HOME}>
-                <Main />
-              </Route>
-              <Route exact path={routes.COUNTRY}>
-                <Country />
-              </Route>
-              <Route exact path={routes.SING_UP}>
-                {isAuthenticated ? <Redirect to="/" /> : <Registration />}
-              </Route>
-              <Route exact path={routes.SING_IN}>
-                {isAuthenticated ? <Redirect to="/" /> : <Login />}
-              </Route>
-            </Switch>
+            <Container className="main">
+              <Switch>
+                <Route exact path={routes.HOME}>
+                  <Main />
+                </Route>
+                <Route exact path={routes.COUNTRY}>
+                  <Country />
+                </Route>
+                <Route exact path={routes.SING_UP}>
+                  {isAuthenticated ? <Redirect to="/" /> : <Registration />}
+                </Route>
+                <Route exact path={routes.SING_IN}>
+                  {isAuthenticated ? <Redirect to="/" /> : <Login />}
+                </Route>
+              </Switch>
+            </Container>
           </main>
           <footer>
             <Footer />
