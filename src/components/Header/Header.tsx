@@ -74,7 +74,7 @@ const Header: React.FunctionComponent<IHeaderProps> = (props: IHeaderProps) => {
                 <div className="header__authbar-link">Sign in</div>
               </LinkContainer>
               <LinkContainer to={routes.SING_UP}>
-                <Button variant="outline-light">Sign up</Button>
+                <Button variant="dark">Sign up</Button>
               </LinkContainer>
             </div>
           )}
