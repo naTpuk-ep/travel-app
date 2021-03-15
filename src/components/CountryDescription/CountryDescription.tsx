@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import React, { FC, useContext } from "react";
+import { Card } from "react-bootstrap";
 import LocalizationContext from "../../context/LocalizationContext";
 import ICountryData from "../../models/country-data";
 import "./CountryDescription.scss";
@@ -24,13 +25,15 @@ const CountryDescription: FC<ICountryDescriptionProps> = ({
 
   return (
     <div className="description">
-      <img className="description__img" src={imageUrl} alt={name} />
-      <div className="description__country">
-        <img className="description__flag" src={flag} alt={name} />
-        <h1 className="description__name">{name}</h1>
-      </div>
-      <h2 className="description__capital">{`Capital: ${capital}`}</h2>
-      <p className="description__info">{description}</p>
+      <Card className="bg-dark text-white">
+        <Card.Img src={imageUrl} alt="Card image" />
+        <Card.ImgOverlay>
+          <Card.Title>{`${name}`}</Card.Title>
+          <img className="flag" src={flag} alt={name} />
+          <Card.Text>{capital}</Card.Text>
+          <Card.Text>{description}</Card.Text>
+        </Card.ImgOverlay>
+      </Card>
     </div>
   );
 };
