@@ -6,6 +6,7 @@ import AuthContext from "../../context/AuthContext";
 import useHttp from "../../hooks/http.hook";
 import IPlaceData from "../../models/place-data";
 import Loader from "../Loader";
+import useDidMountEffect from "../../hooks/useDidMountEffect.hook";
 
 interface IPhotoGalleryParams {
   countryId: string;
@@ -38,7 +39,7 @@ const PhotoGallery: React.FunctionComponent<IPhotoGalleryParams> = (
     getCountries();
   }, [getCountries]);
 
-  useEffect(() => {
+  useDidMountEffect(() => {
     const imgs: {
       original: string;
       thumbnail: string;
