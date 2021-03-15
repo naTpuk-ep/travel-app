@@ -4,9 +4,12 @@ import { Form, Button, Card } from "react-bootstrap";
 import useHttp from "../../hooks/http.hook";
 import "./Registration.scss";
 import AuthContext from "../../context/AuthContext";
+import LOCALIZATIONS from "../../assets/data/localizations";
+import LocalizationContext from "../../context/LocalizationContext";
 
 const Registration: React.FunctionComponent = () => {
   const auth = useContext(AuthContext);
+  const language = useContext(LocalizationContext);
   const { loading, request } = useHttp();
   const [errors, setErrors] = useState("");
   const [form, setForm] = useState({
@@ -41,10 +44,12 @@ const Registration: React.FunctionComponent = () => {
   return (
     <div className="auth-wrapper">
       <Card className="auth-inner" bg="light">
-        <h3 className="mb-4">Sign Up</h3>
+        <h3 className="mb-4">{LOCALIZATIONS.registration.singUp[language]}</h3>
         <Form>
           <Form.Group controlId="email">
-            <Form.Label>Email address</Form.Label>
+            <Form.Label>
+              {LOCALIZATIONS.registration.email[language]}
+            </Form.Label>
             <Form.Control
               value={form.email}
               onChange={changeHandler}
@@ -55,7 +60,7 @@ const Registration: React.FunctionComponent = () => {
             />
           </Form.Group>
           <Form.Group controlId="name">
-            <Form.Label>Name</Form.Label>
+            <Form.Label>{LOCALIZATIONS.registration.name[language]}</Form.Label>
             <Form.Control
               value={form.name}
               onChange={changeHandler}
@@ -66,7 +71,9 @@ const Registration: React.FunctionComponent = () => {
             />
           </Form.Group>
           <Form.Group controlId="password">
-            <Form.Label>Password</Form.Label>
+            <Form.Label>
+              {LOCALIZATIONS.registration.password[language]}
+            </Form.Label>
             <Form.Control
               value={form.password}
               onChange={changeHandler}
@@ -94,7 +101,7 @@ const Registration: React.FunctionComponent = () => {
             variant="primary"
             type="submit"
           >
-            Create profile
+            {LOCALIZATIONS.registration.create[language]}
           </Button>
         </Form>
       </Card>
