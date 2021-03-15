@@ -1,4 +1,5 @@
 import React, { FC, useCallback, useEffect, useState } from "react";
+import "./Time.scss";
 
 interface ITime {
   date: string;
