@@ -3,6 +3,7 @@ import React, { FC, useContext } from "react";
 import { Card } from "react-bootstrap";
 import LocalizationContext from "../../context/LocalizationContext";
 import ICountryData from "../../models/country-data";
+import Weather from "../Weather";
 import "./CountryDescription.scss";
 
 interface ICountryDescriptionProps {
@@ -32,6 +33,7 @@ const CountryDescription: FC<ICountryDescriptionProps> = ({
           <img className="flag" src={flag} alt={name} />
           <Card.Text>{capital}</Card.Text>
           <Card.Text>{description}</Card.Text>
+          <Weather countryData={countryData} />
         </Card.ImgOverlay>
       </Card>
     </div>
