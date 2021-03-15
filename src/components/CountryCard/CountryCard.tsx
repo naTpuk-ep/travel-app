@@ -23,15 +23,18 @@ const CountryCard: React.FunctionComponent<ICountryCardProps> = (
       to={`${routes.HOME}country/${countryData._id}`}
       className="country-card"
     >
-      <Card>
-        <div className="country-card__img">
-          <Card.Img variant="top" src={countryData.imageUrl} />
-        </div>
+      <Card bg="light">
+        <Card.Img
+          className="country-card__img"
+          variant="top"
+          src={countryData.imageUrl}
+        />
         <Card.Body>
+          <Card.Title className="country-card__flag-img">
+            <img src={countryData.flag} alt="flag" />
+          </Card.Title>
           <Card.Title>{countryData.localizations[language].name}</Card.Title>
-          <Card.Text>
-            {countryData.localizations[language].description}
-          </Card.Text>
+          <Card.Text>{countryData.localizations[language].capital}</Card.Text>
         </Card.Body>
         <Card.Footer>
           <small className="text-muted">

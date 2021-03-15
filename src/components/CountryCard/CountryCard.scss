@@ -1,31 +1,33 @@
-//@import "~bootstrap/scss/bootstrap";
+$shadow-sm: 0 .125rem .25rem rgba(0,0,0,.075);
+$shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+$shadow-lg: 0 1rem 3rem rgba(0,0,0,.175);
 
-.country-card {
-  //@extend .shadow-sm;
+.country-card {  
   margin: 0 auto;
-  width: 20rem;
+  width: 20rem;  
   overflow: hidden;
+  box-shadow: $shadow-sm;
   transition: all 0.5s ease;
 
   &:hover {
-    //@extend .shadow-lg;
-    cursor: pointer;
+    box-shadow: $shadow;
+    cursor: pointer;  
   }
 
   @media (max-width: 576px) {
     width: 18rem;
+  }  
+
+  &__flag-img {
+    transition: all 0.5s ease-in-out;
+    & > img  {
+      height: 2rem;
+    }
   }
 
-  &__img {
-    overflow: hidden;
-    height: 15rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    & > img {
-      width: max-content;
-      height: max-content;
-      transform: scale(0.6);
-    }
+  &__img {        
+    width: auto;
+    max-height: 15rem;
+    object-fit: cover;    
   }  
 }
