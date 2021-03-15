@@ -3,9 +3,10 @@ import React, { FC, useCallback, useEffect, useState } from "react";
 interface ITime {
   date: string;
   month: string;
-  year: string;
+  day: string;
   hour: string;
   minute: string;
+  second: string;
 }
 
 interface ITimeProps {
@@ -27,14 +28,16 @@ const Time: FC<ITimeProps> = ({ timezone }: ITimeProps) => {
     const hour = addZero(timeOfZone.getHours());
     const minute = addZero(timeOfZone.getMinutes());
     const date = addZero(timeOfZone.getDate());
-    const month = addZero(timeOfZone.getMonth() + 1);
-    const year = addZero(timeOfZone.getFullYear());
+    const second = addZero(timeOfZone.getSeconds());
+    const month = timeOfZone.toLocaleString("default", { month: "long" });
+    const day = timeOfZone.toLocaleString("default", { weekday: "long" });
     return {
       hour,
       minute,
       date,
       month,
-      year,
+      day,
+      second,
     };
   }, [timezone]);
 
@@ -51,10 +54,12 @@ const Time: FC<ITimeProps> = ({ timezone }: ITimeProps) => {
       clearTimeout(timeOut);
     };
   }, [clockTimeZone]);
-  const { hour, minute, date, month, year } = time;
+  const { hour, minute, date, month, day, second } = time;
   return (
     <div className="time">
-      <h5>{`Local time(${timezone}): ${hour}:${minute} ${date}-${month}-${year}`}</h5>
+      <h5>{day}</h5>
+      <h5>{`${date} ${month}`}</h5>
+      <h5>{`${hour}:${minute}:${second}`}</h5>
     </div>
   );
 };
