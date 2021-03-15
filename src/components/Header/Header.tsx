@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useContext } from "react";
-import { Container, Form, Button, Image } from "react-bootstrap";
+import { Container, Form, Button, Image, Navbar } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import Language from "../../constants/languages";
 import LOCALIZATIONS from "../../assets/data/localizations";
@@ -31,49 +31,55 @@ const Header: React.FunctionComponent<IHeaderProps> = (props: IHeaderProps) => {
 
   return (
     <Container className="header">
-      <LinkContainer to={routes.HOME}>
-        <h1 className="header__logo">{LOCALIZATIONS.header.logo[language]}</h1>
-      </LinkContainer>
-      <Form.Control
-        onChange={handleChangeSelect}
-        size="sm"
-        as="select"
-        className="header__language"
-      >
-        <option value={Language.English}>{Language.English}</option>
-        <option value={Language.Russian}>{Language.Russian}</option>
-        <option value={Language.German}>{Language.German}</option>
-      </Form.Control>
-      {isAuthenticated ? (
-        <div className="header__authbar">
-          {auth.userImage[0] ? (
-            <Image
-              className="header__authbar-avatar"
-              src={auth.userImage[0]}
-              roundedCircle
-            />
-          ) : (
-            ""
-          )}
-          <div className="header__authbar-user">{auth.name}</div>
-          <a
-            href="/"
-            className="header__authbar-link signout"
-            onClick={logoutHandler}
+      <Navbar expand="lg" bg="light" variant="light">
+        <Navbar.Brand>
+          <LinkContainer to={routes.HOME} className="header__logo">
+            <span>{LOCALIZATIONS.header.logo[language]}</span>
+          </LinkContainer>
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Form.Control
+            onChange={handleChangeSelect}
+            as="select"
+            className="header__language"
           >
-            Sign out
-          </a>
-        </div>
-      ) : (
-        <div className="header__authbar">
-          <LinkContainer to={routes.SING_IN}>
-            <div className="header__authbar-link">Sign in</div>
-          </LinkContainer>
-          <LinkContainer to={routes.SING_UP}>
-            <Button variant="outline-light">Sign up</Button>
-          </LinkContainer>
-        </div>
-      )}
+            <option value={Language.English}>{Language.English}</option>
+            <option value={Language.Russian}>{Language.Russian}</option>
+            <option value={Language.German}>{Language.German}</option>
+          </Form.Control>
+          {isAuthenticated ? (
+            <div className="header__authbar">
+              {auth.userImage[0] ? (
+                <Image
+                  className="header__authbar-avatar"
+                  src={auth.userImage[0]}
+                  roundedCircle
+                />
+              ) : (
+                ""
+              )}
+              <div className="header__authbar-user">{auth.name}</div>
+              <a
+                href="/"
+                className="header__authbar-link signout"
+                onClick={logoutHandler}
+              >
+                Sign out
+              </a>
+            </div>
+          ) : (
+            <div className="header__authbar">
+              <LinkContainer to={routes.SING_IN}>
+                <div className="header__authbar-link">Sign in</div>
+              </LinkContainer>
+              <LinkContainer to={routes.SING_UP}>
+                <Button variant="outline-light">Sign up</Button>
+              </LinkContainer>
+            </div>
+          )}
+        </Navbar.Collapse>
+      </Navbar>
     </Container>
   );
 };
