@@ -4,12 +4,13 @@ import { MapContainer, Marker, TileLayer, Popup, Polygon } from "react-leaflet";
 import React from "react";
 import { Button } from "react-bootstrap";
 import FullscreenIcon from "@material-ui/icons/Fullscreen";
-import "./map.scss";
+import ICountryData from "../../models/country-data";
+import "./Map.scss";
 import cData from "../../assets/geoJson/countries";
 import marketImg from "../../assets/images/marker.png";
 
 interface IProps {
-  iso: string;
+  countryData: ICountryData | undefined;
 }
 
 interface IState {
@@ -27,47 +28,9 @@ class Map extends React.Component<IProps, IState> {
     popupAnchor: [15, 0],
   });
 
-  zoom = 1;
+  zoom = 3;
 
   redOptions = { color: "red" };
-
-  constructor(props: IProps) {
-    super(props);
-    this.state = {
-      latitude: 0,
-      longitude: 0,
-      data: [],
-    };
-  }
-
-  // eslint-disable-next-line
-  async componentDidUpdate(prevProps: IProps) {
-    const { iso } = this.props;
-    if (prevProps.iso !== iso) {
-      const url = `https://rnovikov-travel-app-backend.herokuapp.com/countries/${iso}`;
-      const response = await fetch(url);
-      const newData = await response.json();
-      // eslint-disable-next-line
-      const info: any = cData;
-      // eslint-disable-next-line
-      const mass: any = info[iso].map((el: any) => {
-        el[0].map((item: number[]) => {
-          return item.reverse();
-        });
-        return el;
-      });
-      this.updateMap(newData, mass);
-    }
-  }
-
-  // eslint-disable-next-line
-  updateMap = (newData: any, mass: any): void => {
-    this.setState({
-      latitude: newData[0].capitalLocation.coordinates[0],
-      longitude: newData[0].capitalLocation.coordinates[1],
-      data: mass,
-    });
-  };
 
   // eslint-disable-next-line
   fullScreen = (e: any): void => {
@@ -82,8 +45,27 @@ class Map extends React.Component<IProps, IState> {
 
   // eslint-disable-next-line
   render() {
-    const { latitude, longitude, data } = this.state;
-    const position: LatLngExpression = [0, 0];
+    const { countryData } = this.props;
+    const {
+      ISOCode,
+      capitalLocation: { coordinates },
+      // eslint-disable-next-line
+    } = countryData!;
+    const latitude = coordinates[0];
+    const longitude = coordinates[1];
+    const copiedObject = JSON.parse(JSON.stringify(cData));
+    // eslint-disable-next-line
+    const info: any = copiedObject;
+    // eslint-disable-next-line
+    const data: any = info[ISOCode].map((el: any) => {
+      el[0].map((item: number[]) => {
+        return item.reverse();
+      });
+      return el;
+    });
+
+    // const { latitude, longitude, data } = this.state;
+    const position: LatLngExpression = [latitude, longitude];
     return (
       <div className="map-container">
         <>

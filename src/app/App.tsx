@@ -1,38 +1,64 @@
-import * as React from "react";
-import { Route, Switch, useParams } from "react-router-dom";
+import React, { useState } from "react";
+import { Route, Switch, Redirect } from "react-router-dom";
 import routes from "../constants/routes";
 import "./App.scss";
-import Map from "../components/map";
-
-const MainPage: React.FunctionComponent = () => {
-  return <Map iso="1231" />;
-};
-
-interface ICountryPageParams {
-  countryId: string;
-}
-
-const CountryPage: React.FunctionComponent = () => {
-  const { countryId } = useParams<ICountryPageParams>();
-
-  return <h1>Country: {countryId}</h1>;
-};
+import Main from "../pages/Main";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import Country from "../pages/Country";
+import Language from "../constants/languages";
+import LocalizationContext from "../context/LocalizationContext";
+import useAuth from "../hooks/auth.hook";
+import AuthContext from "../context/AuthContext";
+import Registration from "../pages/Registration";
+import Login from "../pages/Login";
 
 const App: React.FunctionComponent = () => {
+  const [language, setLanguage] = useState(Language.English);
+  const { token, login, logout, userId, name, userImage } = useAuth();
+  const isAuthenticated = !!token;
+
   return (
     <>
-      {/* <header></header> */}
-      <main>
-        <Switch>
-          <Route exact path={routes.HOME}>
-            <MainPage />
-          </Route>
-          <Route path={routes.COUNTRY}>
-            <CountryPage />
-          </Route>
-        </Switch>
-      </main>
-      {/* <footer></footer> */}
+      <AuthContext.Provider
+        value={{
+          token,
+          login,
+          logout,
+          userId,
+          name,
+          userImage,
+          isAuthenticated,
+        }}
+      >
+        <LocalizationContext.Provider value={language}>
+          <header>
+            <Header
+              changeLanguage={setLanguage}
+              isAuthenticated={isAuthenticated}
+            />
+          </header>
+          <main>
+            <Switch>
+              <Route exact path={routes.HOME}>
+                <Main />
+              </Route>
+              <Route exact path={routes.COUNTRY}>
+                <Country />
+              </Route>
+              <Route exact path={routes.SING_UP}>
+                {isAuthenticated ? <Redirect to="/" /> : <Registration />}
+              </Route>
+              <Route exact path={routes.SING_IN}>
+                {isAuthenticated ? <Redirect to="/" /> : <Login />}
+              </Route>
+            </Switch>
+          </main>
+          <footer>
+            <Footer />
+          </footer>
+        </LocalizationContext.Provider>
+      </AuthContext.Provider>
     </>
   );
 };
