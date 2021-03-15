@@ -5,6 +5,7 @@ import axios from "axios";
 import ICountryData from "../../models/country-data";
 import Loader from "../../components/Loader";
 import CountryDescription from "../../components/CountryDescription";
+import PhotoGallery from "../../components/PhotoGallery";
 
 interface ICountryPageParams {
   countryId: string;
@@ -31,6 +32,7 @@ const CountryPage: React.FunctionComponent = () => {
   return (
     <Container className="country-page">
       {isLoad ? <CountryDescription countryData={countryData} /> : <Loader />}
+      <PhotoGallery countryId={countryId} />
     </Container>
   );
 };
