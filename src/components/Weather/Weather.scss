@@ -1,0 +1,9 @@
+.weather {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 5px 20px;
+  &__temperature {
+    margin: 0;
+  }
+}
