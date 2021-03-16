@@ -4,7 +4,6 @@ import axios from "axios";
 import ICountryData from "../../models/country-data";
 import Loader from "../../components/Loader";
 import CountryDescription from "../../components/CountryDescription";
-import Map from "../../components/Map";
 
 interface ICountryPageParams {
   countryId: string;
