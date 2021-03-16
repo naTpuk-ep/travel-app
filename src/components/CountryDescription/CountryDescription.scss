@@ -31,7 +31,7 @@ $shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
     vertical-align: sub;
     margin-right: 10px;
   }
-  & .card-text {
+  & .card-text:first-of-type {
     font-weight: 500;
     text-align: justify;
   }
