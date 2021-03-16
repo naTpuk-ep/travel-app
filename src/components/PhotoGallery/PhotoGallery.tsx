@@ -2,6 +2,7 @@
 import React, { useContext, useEffect, useState, useCallback } from "react";
 import ImageGallery from "react-image-gallery";
 import "./PhotoGallery.scss";
+import { Card } from "react-bootstrap";
 import LocalizationContext from "../../context/LocalizationContext";
 import useHttp from "../../hooks/http.hook";
 import IPlaceData from "../../models/place-data";
@@ -68,11 +69,11 @@ const PhotoGallery: React.FunctionComponent<IPhotoGalleryParams> = (
   };
 
   return (
-    <div>
+    <Card bg="light">
       {loading ? (
         <Loader />
       ) : (
-        <div>
+        <div className="gallery">
           <ImageGallery
             items={images}
             showIndex
@@ -84,7 +85,7 @@ const PhotoGallery: React.FunctionComponent<IPhotoGalleryParams> = (
           {placeId === "0" ? "" : <PlaceRating placeId={placeId} />}
         </div>
       )}
-    </div>
+    </Card>
   );
 };
 
