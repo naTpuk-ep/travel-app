@@ -29,7 +29,13 @@ const Registration: React.FunctionComponent = () => {
         { ...form }
       );
       setErrors("");
-      auth.login(data.token, data.userId, data.name, data.userImage);
+      auth.login(
+        data.token,
+        data.userId,
+        data.name,
+        data.email,
+        data.userImage
+      );
     } catch (e) {
       setErrors(e.response.data.message);
     }
