@@ -1,10 +1,10 @@
 import axios from "axios";
 import React, { createRef, FC, useContext, useEffect, useState } from "react";
-// import ReactWeather, { useOpenWeather } from "react-open-weather";
-import LocalizationContext from "../../context/LocalizationContext";
 import ICountryData from "../../models/country-data";
 import Loader from "../Loader";
 import "./Weather.scss";
+import LOCALIZATIONS from "../../assets/data/localizations";
+import LocalizationContext from "../../context/LocalizationContext";
 
 interface IWeatherProps {
   countryData: ICountryData | undefined;
@@ -18,33 +18,13 @@ interface IWeatherData {
     deg: number;
     speed: number;
   };
+  description: string;
 }
 
 const Weather: FC<IWeatherProps> = ({ countryData }: IWeatherProps) => {
   const language = useContext(LocalizationContext);
   const APIKey = "ce37a86730058fe8d88e2bd624a9e06f";
   const [weatherData, setWeatherData] = useState<IWeatherData | undefined>();
-  // const weatherData = useOpenWeather({
-  //   key: APIKey,
-  //   lat: countryData?.capitalLocation.coordinates[0],
-  //   lon: countryData?.capitalLocation.coordinates[1],
-  //   lang: language,
-  //   unit: "metric",
-  // });
-  // const { data, isLoading, errorMessage } = weatherData;
-  // const customStyles = {
-  //   fontFamily: "Helvetica, sans-serif",
-  //   gradientStart: "white",
-  //   gradientMid: "white",
-  //   gradientEnd: "white",
-  //   locationFontColor: "black",
-  //   todayTempFontColor: "black",
-  //   todayDateFontColor: "black",
-  //   todayRangeFontColor: "black",
-  //   todayDescFontColor: "black",
-  //   todayInfoFontColor: "black",
-  //   todayIconColor: "black",
-  // };
   const [minimized, setMinimized] = useState("minimized");
   const clickHandler = (
     event: React.MouseEvent<HTMLDivElement, MouseEvent>
@@ -71,7 +51,7 @@ const Weather: FC<IWeatherProps> = ({ countryData }: IWeatherProps) => {
       );
       const {
         main: { temp, humidity },
-        weather: [{ id }],
+        weather: [{ id, description }],
         wind,
       } = res.data;
       setWeatherData({
@@ -79,13 +59,12 @@ const Weather: FC<IWeatherProps> = ({ countryData }: IWeatherProps) => {
         humidity,
         id,
         wind,
+        description,
       });
     };
 
     getWeather();
   }, [countryData, language]);
-
-  console.log(weatherData ?? "noWdata");
 
   return (
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events
@@ -96,25 +75,17 @@ const Weather: FC<IWeatherProps> = ({ countryData }: IWeatherProps) => {
       onClick={clickHandler}
       className={`weather ${minimized}`}
     >
-      {/* <ReactWeather
-        isLoading={isLoading}
-        errorMessage={errorMessage}
-        data={data}
-        lang={language}
-        locationLabel={countryData?.localizations.en.capital}
-        unitsLabels={{ temperature: "℃", windSpeed: "Km/h" }}
-        showForecast={false}
-        theme={customStyles}
-      /> */}
       {weatherData ? (
         <>
           <div className="weather__left">
-            <h3>{weatherData.temp}</h3>
-            <br />
+            <h1>{`${Math.round(weatherData.temp)} ℃`} </h1>
+            <p>{`${LOCALIZATIONS.weather.humidity[language]}: ${weatherData.humidity} %`}</p>
+            <p>{`${LOCALIZATIONS.weather.windSpeed[language]}: ${weatherData.wind.speed} ${LOCALIZATIONS.weather.units[language]}`}</p>
             {/* <p>{weatherData.de}</p> */}
           </div>
-          <div className="weather__icon">
+          <div className="weather__right">
             <i className={`owf owf-${weatherData.id}-d owf-5x`} />
+            <h4>{weatherData.description}</h4>
           </div>
         </>
       ) : (

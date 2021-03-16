@@ -53,7 +53,7 @@ const Currency: FC<IcurrencyProps> = ({ localCurrency }: IcurrencyProps) => {
         .get(`https://api.exchangeratesapi.io/latest?base=${base}`)
         .then((response) => response.data)
         .catch(() => {
-          setError("Error loading currency information");
+          setError("Error loading currency data");
         });
       if (data) {
         const { rates } = data;
@@ -64,7 +64,7 @@ const Currency: FC<IcurrencyProps> = ({ localCurrency }: IcurrencyProps) => {
     if (localCurrency) {
       getRates(localCurrency);
     } else {
-      setError("Error loading currency information");
+      setError("Error loading currency data");
     }
   }, [localCurrency, selectRates]);
 

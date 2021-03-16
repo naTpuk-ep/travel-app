@@ -1,6 +1,5 @@
 import React, { FC, useCallback, useContext, useEffect, useState } from "react";
 import LOCALIZATIONS from "../../assets/data/localizations";
-import Language from "../../constants/languages";
 import LocalizationContext from "../../context/LocalizationContext";
 import ITime from "../../models/time";
 import "./Time.scss";

@@ -1,4 +1,21 @@
 const LOCALIZATIONS = {
+  weather: {
+    humidity: {
+      ru: "Влажность",
+      en: "Humidity",
+      de: "Feuchtigkeit",
+    },
+    windSpeed: {
+      ru: "Ветер",
+      en: "Wind",
+      de: "Windstärke",
+    },
+    units: {
+      ru: "км/ч",
+      en: "km/h",
+      de: "km/h",
+    },
+  },
   time: {
     months: {
       en: [
