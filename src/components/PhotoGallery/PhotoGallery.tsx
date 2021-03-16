@@ -1,12 +1,13 @@
+/* eslint-disable no-underscore-dangle */
 import React, { useContext, useEffect, useState, useCallback } from "react";
 import ImageGallery from "react-image-gallery";
 import "./PhotoGallery.scss";
 import LocalizationContext from "../../context/LocalizationContext";
-import AuthContext from "../../context/AuthContext";
 import useHttp from "../../hooks/http.hook";
 import IPlaceData from "../../models/place-data";
 import Loader from "../Loader";
 import useDidMountEffect from "../../hooks/useDidMountEffect.hook";
+import PlaceRating from "../PlaceRating";
 
 interface IPhotoGalleryParams {
   countryId: string;
@@ -16,12 +17,12 @@ const PhotoGallery: React.FunctionComponent<IPhotoGalleryParams> = (
   props: IPhotoGalleryParams
 ) => {
   const language = useContext(LocalizationContext);
-  const auth = useContext(AuthContext);
   const { countryId } = props;
   const { loading, request } = useHttp();
   const [places, setPlaces] = useState<IPlaceData[]>([]);
   const [images, setImages] = useState<{ original: string }[]>([]);
   const [imageIndex, setImageIndex] = useState(0);
+  const [placeId, setPlaceId] = useState("0");
 
   const getCountries = useCallback(async () => {
     try {
@@ -30,6 +31,7 @@ const PhotoGallery: React.FunctionComponent<IPhotoGalleryParams> = (
         "GET"
       );
       setPlaces(data);
+      setPlaceId(data[0]._id);
     } catch (e) {
       setPlaces([]);
     }
@@ -57,19 +59,29 @@ const PhotoGallery: React.FunctionComponent<IPhotoGalleryParams> = (
     setImages(imgs);
   }, [language, places]);
 
+  const setImageRatings = (index: number) => {
+    const id =
+      places.find((place) => place.photoUrl === images[index].original)?._id ||
+      "0";
+    setPlaceId(id);
+  };
+
   return (
     <div>
       {loading ? (
         <Loader />
       ) : (
-        <ImageGallery
-          items={images}
-          showIndex
-          onSlide={(currentIndex) => {
-            setImageIndex(currentIndex);
-          }}
-          startIndex={imageIndex}
-        />
+        <div>
+          <ImageGallery
+            items={images}
+            showIndex
+            onSlide={(currentIndex) => {
+              setImageRatings(currentIndex);
+            }}
+            startIndex={imageIndex}
+          />
+          {placeId === "0" ? "" : <PlaceRating placeId={placeId} />}
+        </div>
       )}
     </div>
   );
