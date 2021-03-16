@@ -2,14 +2,14 @@ import React, { FC } from "react";
 import ReactPlayer from "react-player";
 import "./Video.scss";
 
-interface IProps {
+interface IVideoProps {
   url: string | undefined;
 }
 
-const CountryDescription: FC<IProps> = ({ url }: IProps) => {
+const CountryDescription: FC<IVideoProps> = ({ url }: IVideoProps) => {
   return (
     <div className="video-container">
-      <ReactPlayer url={url} controls />
+      <ReactPlayer url={url} width="100%" controls />
     </div>
   );
 };
