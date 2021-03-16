@@ -3,7 +3,7 @@ $shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 .description {
   color: black;
   & .card-img-top {
-    min-width: 688px;
+    min-width: 900px;
   }
   & .card {
     overflow: hidden;
@@ -49,7 +49,7 @@ $shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 @media (max-width: 992px) {
   .description {
   & .card:first-of-type {
-    max-height: 368px;
+    height: 376px;
   }
   }
 }

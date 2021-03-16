@@ -60,7 +60,11 @@ $shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
 }
 
 @media (max-width: 992px) {
-  .minimized {
+  .weather.minimized {
+    & .loader {
+      margin-top: 12px;
+      margin-left: 2px;
+    }
     width: 50px;
     height: 50px;
     & .weather__left {
@@ -77,22 +81,6 @@ $shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
     h4 {
       display: none;
     }
-
-    // svg {
-    //   fill: black;
-    //   height: 100%;
-    //   margin-top: 7px;
-    // }
-    // // .main-0-2-2 {
-    // //   width: 50px;
-    // //   height: 50px;
-    // // }
-    // // .left-0-2-4 {
-    // //   display: none;
-    // // }
-    // // .right-0-2-5 {
-    // //   width: 100%;
-    // // }
   }
 }
 
