@@ -1,6 +1,6 @@
 .rating-container {
-  margin: auto;
-  max-width: 300px;
+  margin: 0 auto;
+  width: 36rem;
   max-height: 500px;
   padding: 5px;
   flex: 1;
@@ -8,9 +8,14 @@
   overflow: auto;
   flex-direction: column;
   row-gap: 10px;
+  border: 1px solid #b3b3b3;
+
+  @media (max-width: 768px) {
+    width: 18rem;
+  }
 
   &__record {
-    font-size: 18px;
+    font-size: 14px;
     padding: 5px 10px 15px 10px;
     display: flex;
     flex-direction: column;

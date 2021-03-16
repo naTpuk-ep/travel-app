@@ -69,21 +69,23 @@ const PhotoGallery: React.FunctionComponent<IPhotoGalleryParams> = (
   };
 
   return (
-    <Card bg="light">
+    <Card bg="light" className="card-row">
       {loading ? (
         <Loader />
       ) : (
-        <div className="gallery">
-          <ImageGallery
-            items={images}
-            showIndex
-            onSlide={(currentIndex) => {
-              setImageRatings(currentIndex);
-            }}
-            startIndex={imageIndex}
-          />
+        <>
+          <div className="img-gallery">
+            <ImageGallery
+              items={images}
+              showIndex
+              onSlide={(currentIndex) => {
+                setImageRatings(currentIndex);
+              }}
+              startIndex={imageIndex}
+            />
+          </div>
           {placeId === "0" ? "" : <PlaceRating placeId={placeId} />}
-        </div>
+        </>
       )}
     </Card>
   );

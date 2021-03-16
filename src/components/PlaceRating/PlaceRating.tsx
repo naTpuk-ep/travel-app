@@ -137,7 +137,7 @@ const PlaceRating: React.FunctionComponent<IPlaceRatingParams> = (
             type="submit"
           >
             {loading ? (
-              <div className="loader-sm">
+              <div className="loader-sm-comment">
                 <Spinner animation="border" />
               </div>
             ) : (
