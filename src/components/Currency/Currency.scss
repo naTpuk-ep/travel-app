@@ -1,10 +1,14 @@
 .currency {
-  background: #ffffffa1;
+  cursor: default;
+  outline: none;
+  background: #fafafaab;
   border-radius: 5px;
   padding: 5px;
-  float: right;
-  margin: 1%;
-  max-width: 40%;
+  width: 200px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin: 15px;
   & p {
     margin: 0;
   }
@@ -17,4 +21,23 @@
 
 .error {
   color: rgb(107, 24, 24);
+}
+
+@media (max-width: 991px) {
+  .minimized {
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    & h5 {
+      line-height: 1.8;
+      text-align: center;
+      margin-top: -180px;
+    }
+    & .loader {
+      transform: scale(0.5) translate(-20px, -40px);
+      display: block;
+      height: 5rem;
+    }
+  }
 }

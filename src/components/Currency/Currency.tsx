@@ -2,7 +2,7 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable no-console */
 import axios from "axios";
-import React, { FC, useCallback, useEffect, useState } from "react";
+import React, { createRef, FC, useCallback, useEffect, useState } from "react";
 import CurrencyConverts from "../../constants/currencyConverts";
 import Loader from "../Loader";
 import "./Currency.scss";
@@ -58,8 +58,35 @@ const Currency: FC<IcurrencyProps> = ({ localCurrency }: IcurrencyProps) => {
       setError("Error loading currency information");
     }
   }, [localCurrency, selectRates]);
+
+  const [minimized, setMinimized] = useState("minimized");
+  const clickHandler = (
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ): void => {
+    event.stopPropagation();
+    setMinimized("");
+  };
+  const CurrRef = createRef<HTMLDivElement>();
+
+  useEffect(() => {
+    const closeWidgetes = () => {
+      if (CurrRef.current) {
+        setMinimized("minimized");
+      }
+    };
+    window.addEventListener("click", closeWidgetes);
+    return () => window.removeEventListener("click", closeWidgetes);
+  });
   return (
-    <div className="currency">
+    // eslint-disable-next-line jsx-a11y/click-events-have-key-events
+    <div
+      ref={CurrRef}
+      role="button"
+      tabIndex={0}
+      onClick={clickHandler}
+      // className=""
+      className={`currency ${minimized}`}
+    >
       {displayRates ? (
         <>
           <h5>{`Local currency: ${localCurrency}`}</h5>
@@ -71,7 +98,7 @@ const Currency: FC<IcurrencyProps> = ({ localCurrency }: IcurrencyProps) => {
             </div>
           ))}
         </>
-      ) : error ? (
+      ) : error && !minimized ? (
         <h6 className="error">{error}</h6>
       ) : (
         <Loader />

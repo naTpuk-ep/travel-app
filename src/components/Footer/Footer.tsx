@@ -3,7 +3,11 @@ import { Container } from "react-bootstrap";
 import "./Footer.scss";
 
 const Footer: React.FunctionComponent = () => {
-  return <Container>Footer</Container>;
+  return (
+    <Container>
+      <div className="footer">Footer</div>
+    </Container>
+  );
 };
 
 export default Footer;

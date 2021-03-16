@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Container } from "react-bootstrap";
 import axios from "axios";
 import ICountryData from "../../models/country-data";
 import Loader from "../../components/Loader";
 import CountryDescription from "../../components/CountryDescription";
-import Currency from "../../components/Currency";
 
 interface ICountryPageParams {
   countryId: string;
@@ -30,16 +28,15 @@ const CountryPage: React.FunctionComponent = () => {
   }, [countryId]);
 
   return (
-    <Container className="country-page">
+    <>
       {isLoad ? (
-        <>
+        <div className="country-page">
           <CountryDescription countryData={countryData} />
-          <Currency localCurrency={countryData?.currency} />
-        </>
+        </div>
       ) : (
         <Loader />
       )}
-    </Container>
+    </>
   );
 };
 
