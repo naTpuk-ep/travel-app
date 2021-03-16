@@ -58,9 +58,9 @@ const Time: FC<ITimeProps> = ({ timezone }: ITimeProps) => {
   const { hour, minute, date, month, day, second } = time;
   return (
     <div className="time">
-      <h5>{day}</h5>
-      <h5>{`${date} ${month}`}</h5>
-      <h5>{`${hour}:${minute}:${second}`}</h5>
+      {/* <h6>{day}</h6> */}
+      <h6>{`${date} ${month} ${day}`}</h6>
+      <h2>{`${hour}:${minute}:${second}`}</h2>
     </div>
   );
 };

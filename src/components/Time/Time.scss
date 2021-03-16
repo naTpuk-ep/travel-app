@@ -4,5 +4,12 @@
   right: 0;
   background: #4d4d4d5c;
   border-radius: 5px;
-  margin: 5px;
+  margin: 15px;
+  background-color: #ffffff8c;
+  & h2 {
+    text-align: center;
+  }
+  & > * {
+    margin: 0;
+  }
 }

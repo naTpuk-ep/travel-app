@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import React, { FC, useContext } from "react";
+import { Card } from "react-bootstrap";
 import LocalizationContext from "../../context/LocalizationContext";
 import ICountryData from "../../models/country-data";
 import Time from "../Time";
@@ -26,16 +27,16 @@ const CountryDescription: FC<ICountryDescriptionProps> = ({
 
   return (
     <div className="description">
-      <img className="description__img" src={imageUrl} alt={name} />
-      <div className="description__country">
-        <img className="description__flag" src={flag} alt={name} />
-        <h1 className="description__name">{name}</h1>
-      </div>
-      <div className="description__capital">
-        <h2 className="description__capital__name">{`Capital: ${capital}`}</h2>
-        <Time timezone={timezones[0]} />
-      </div>
-      <p className="description__info">{description}</p>
+      <Card className="bg-dark text-white">
+        <Card.Img src={imageUrl} alt="Card image" />
+        <Card.ImgOverlay>
+          <Card.Title>{`${name}`}</Card.Title>
+          <img className="flag" src={flag} alt={name} />
+          <Card.Text>{capital}</Card.Text>
+          <Card.Text>{description}</Card.Text>
+          <Time timezone={timezones[0]} />
+        </Card.ImgOverlay>
+      </Card>
     </div>
   );
 };
