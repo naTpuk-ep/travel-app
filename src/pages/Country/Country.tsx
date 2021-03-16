@@ -29,16 +29,16 @@ const CountryPage: React.FunctionComponent = () => {
   }, [countryId]);
 
   return (
-    <Container className="country-page">
+    <>
       {isLoad ? (
-        <>
-          <CountryDescription countryData={countryData} />{" "}
+        <div className="country-page">
+          <CountryDescription countryData={countryData} />
           <Map countryData={countryData} />
-        </>
+        </div>
       ) : (
         <Loader />
       )}
-    </Container>
+    </>
   );
 };
 
