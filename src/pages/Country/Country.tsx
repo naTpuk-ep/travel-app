@@ -4,7 +4,6 @@ import axios from "axios";
 import ICountryData from "../../models/country-data";
 import Loader from "../../components/Loader";
 import CountryDescription from "../../components/CountryDescription";
-import Map from "../../components/Map";
 
 interface ICountryPageParams {
   countryId: string;
@@ -29,16 +28,15 @@ const CountryPage: React.FunctionComponent = () => {
   }, [countryId]);
 
   return (
-    <Container className="country-page">
+    <>
       {isLoad ? (
-        <>
-          <CountryDescription countryData={countryData} />{" "}
-          <Map countryData={countryData} />
-        </>
+        <div className="country-page">
+          <CountryDescription countryData={countryData} />
+        </div>
       ) : (
         <Loader />
       )}
-    </Container>
+    </>
   );
 };
 
