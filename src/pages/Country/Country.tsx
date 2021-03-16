@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Container } from "react-bootstrap";
 import axios from "axios";
 import ICountryData from "../../models/country-data";
 import Loader from "../../components/Loader";

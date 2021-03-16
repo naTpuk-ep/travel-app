@@ -1,7 +1,11 @@
 .header {
-  padding: 15px;
-  display: flex;
-  align-items: center;
+  & .navbar {    
+    padding: 0.5rem 0;
+  }
+
+  & .navbar-collapse {
+    justify-content: flex-end;
+  }
 
   &__logo {
     margin: 0;
@@ -13,10 +17,19 @@
   }
 
   &__language {
-    margin-left: auto;
+    margin-left: 0.75rem;
     width: max-content;
     text-transform: uppercase;
     font-weight: bold;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    @media (max-width: 992px) {
+      margin-top: 0.5rem;
+      margin-left: 0;
+    }
 
     & option {
       text-transform: uppercase;
@@ -25,13 +38,16 @@
   }
 
   &__authbar{
+    margin-left: 0.75rem;
     display: flex;
-    margin-left: auto;
     align-items: center;
-    justify-content:center;
     column-gap: 10px;
-
     font-size: 20px;
+
+    @media (max-width: 992px) {
+      margin-top: 0.5rem;
+      margin-left: 0;
+    }
 
     &-user{
       text-align: center;
@@ -43,12 +59,12 @@
     }
 
     &-link{
-      font-size: 18px;
+      font-size: 16px;
       text-decoration: underline;
 
       &.signout{
         color: inherit;
-        font-size: 14px;
+        font-size: 16px;
         &:visited{
           text-decoration:none;
         }
