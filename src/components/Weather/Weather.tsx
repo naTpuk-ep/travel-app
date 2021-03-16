@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import axios from "axios";
 import React, { createRef, FC, useContext, useEffect, useState } from "react";
 import ICountryData from "../../models/country-data";
@@ -26,6 +27,7 @@ const Weather: FC<IWeatherProps> = ({ countryData }: IWeatherProps) => {
   const APIKey = "ce37a86730058fe8d88e2bd624a9e06f";
   const [weatherData, setWeatherData] = useState<IWeatherData | undefined>();
   const [minimized, setMinimized] = useState("minimized");
+  const [error, setError] = useState<string | undefined>();
   const clickHandler = (
     event: React.MouseEvent<HTMLDivElement, MouseEvent>
   ): void => {
@@ -46,21 +48,29 @@ const Weather: FC<IWeatherProps> = ({ countryData }: IWeatherProps) => {
 
   useEffect(() => {
     const getWeather = async () => {
-      const res = await axios.get(
-        `https://api.openweathermap.org/data/2.5/weather?q=${countryData?.localizations[language].capital}&lang=${language}&appid=${APIKey}&units=metric`
-      );
-      const {
-        main: { temp, humidity },
-        weather: [{ id, description }],
-        wind,
-      } = res.data;
-      setWeatherData({
-        temp,
-        humidity,
-        id,
-        wind,
-        description,
-      });
+      const res = await axios
+        .get(
+          `https://api.openweathermap.org/data/2.5/weather?q=${countryData?.localizations[language].capital}&lang=${language}&appid=${APIKey}&units=metric`
+        )
+        .then((response) => response)
+        .catch(() => {
+          setError("Error loading weather data");
+        });
+      if (res) {
+        setError(undefined);
+        const {
+          main: { temp, humidity },
+          weather: [{ id, description }],
+          wind,
+        } = res.data;
+        setWeatherData({
+          temp,
+          humidity,
+          id,
+          wind,
+          description,
+        });
+      }
     };
 
     getWeather();
@@ -88,6 +98,8 @@ const Weather: FC<IWeatherProps> = ({ countryData }: IWeatherProps) => {
             <h4>{weatherData.description}</h4>
           </div>
         </>
+      ) : error && !minimized ? (
+        <p className="error">{error}</p>
       ) : (
         <Loader />
       )}
