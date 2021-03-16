@@ -1,4 +1,7 @@
+$shadow-sm: 0 .125rem .25rem rgba(0,0,0,.075);
+
 .weather {
+  box-shadow: $shadow-sm;
   height: 160px;
   outline: none;
   cursor: default;
