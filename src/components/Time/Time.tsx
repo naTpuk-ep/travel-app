@@ -1,14 +1,6 @@
 import React, { FC, useCallback, useEffect, useState } from "react";
+import ITime from "../../models/time";
 import "./Time.scss";
-
-interface ITime {
-  date: string;
-  month: string;
-  day: string;
-  hour: string;
-  minute: string;
-  second: string;
-}
 
 interface ITimeProps {
   timezone: string;
