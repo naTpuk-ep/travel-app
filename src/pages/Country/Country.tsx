@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Container } from "react-bootstrap";
 import axios from "axios";
 import ICountryData from "../../models/country-data";
 import Loader from "../../components/Loader";
@@ -30,10 +29,16 @@ const CountryPage: React.FunctionComponent = () => {
   }, [countryId]);
 
   return (
-    <Container className="country-page">
-      {isLoad ? <CountryDescription countryData={countryData} /> : <Loader />}
-      <PhotoGallery countryId={countryId} />
-    </Container>
+    <>
+      {isLoad ? (
+        <div className="country-page">
+          <CountryDescription countryData={countryData} />
+          <PhotoGallery countryId={countryId} />
+        </div>
+      ) : (
+        <Loader />
+      )}
+    </>
   );
 };
 
