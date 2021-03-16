@@ -1,4 +1,9 @@
 const LOCALIZATIONS = {
+  currency: {
+    en: "Currency",
+    ru: "Валюта",
+    de: "Währung",
+  },
   header: {
     logo: {
       en: "Travels",

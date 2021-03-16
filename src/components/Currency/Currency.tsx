@@ -1,9 +1,17 @@
 /* eslint-disable no-nested-ternary */
 /* eslint-disable react/no-array-index-key */
-/* eslint-disable no-console */
 import axios from "axios";
-import React, { createRef, FC, useCallback, useEffect, useState } from "react";
+import React, {
+  createRef,
+  FC,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
+import LOCALIZATIONS from "../../assets/data/localizations";
 import CurrencyConverts from "../../constants/currencyConverts";
+import LocalizationContext from "../../context/LocalizationContext";
 import Loader from "../Loader";
 import "./Currency.scss";
 
@@ -18,6 +26,7 @@ interface IcurrencyProps {
 const Currency: FC<IcurrencyProps> = ({ localCurrency }: IcurrencyProps) => {
   const [displayRates, setDisplayRates] = useState<ICurrencies>();
   const [error, setError] = useState<string | null>();
+  const language = useContext(LocalizationContext);
 
   const roundRatesValues = (value: number) => {
     let roundCoefficient = 100;
@@ -84,12 +93,11 @@ const Currency: FC<IcurrencyProps> = ({ localCurrency }: IcurrencyProps) => {
       role="button"
       tabIndex={0}
       onClick={clickHandler}
-      // className=""
       className={`currency ${minimized}`}
     >
       {displayRates ? (
         <>
-          <h5>{`Local currency: ${localCurrency}`}</h5>
+          <h5>{`${LOCALIZATIONS.currency[language]}: ${localCurrency}`}</h5>
           {Object.keys(displayRates).map((key: string, i: number) => (
             <div className="currency__item" key={i}>
               <span>{`1 ${localCurrency}`}</span>

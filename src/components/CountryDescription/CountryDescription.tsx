@@ -17,6 +17,8 @@ const CountryDescription: FC<ICountryDescriptionProps> = ({
 }: ICountryDescriptionProps) => {
   const language = useContext(LocalizationContext);
 
+  console.log(countryData);
+
   const {
     flag,
     imageUrl,
