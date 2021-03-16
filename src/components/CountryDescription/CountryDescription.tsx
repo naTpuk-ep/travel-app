@@ -3,6 +3,7 @@ import React, { FC, useContext } from "react";
 import { Card } from "react-bootstrap";
 import LocalizationContext from "../../context/LocalizationContext";
 import ICountryData from "../../models/country-data";
+import Currency from "../Currency";
 import Time from "../Time";
 import "./CountryDescription.scss";
 
@@ -35,6 +36,7 @@ const CountryDescription: FC<ICountryDescriptionProps> = ({
           <Card.Text>{capital}</Card.Text>
           <Card.Text>{description}</Card.Text>
           <Time timezone={timezones[0]} />
+          <Currency localCurrency={countryData?.currency} />
         </Card.ImgOverlay>
       </Card>
     </div>
