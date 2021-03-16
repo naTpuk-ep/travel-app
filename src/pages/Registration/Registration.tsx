@@ -1,12 +1,11 @@
 import React, { useState, useContext } from "react";
 import ImageUploader from "react-images-upload";
-import { Form, Button, Card } from "react-bootstrap";
+import { Form, Button, Card, Spinner } from "react-bootstrap";
 import useHttp from "../../hooks/http.hook";
 import "./Registration.scss";
 import AuthContext from "../../context/AuthContext";
 import LOCALIZATIONS from "../../assets/data/localizations";
 import LocalizationContext from "../../context/LocalizationContext";
-import Loader from "../../components/Loader";
 
 const Registration: React.FunctionComponent = () => {
   const auth = useContext(AuthContext);
@@ -110,7 +109,7 @@ const Registration: React.FunctionComponent = () => {
           >
             {loading ? (
               <div className="loader-sm">
-                <Loader />
+                <Spinner animation="border" />
               </div>
             ) : (
               LOCALIZATIONS.registration.create[language]

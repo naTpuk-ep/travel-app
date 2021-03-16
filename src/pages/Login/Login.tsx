@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
-import { Form, Button, Card } from "react-bootstrap";
+import { Form, Button, Card, Spinner } from "react-bootstrap";
 import LOCALIZATIONS from "../../assets/data/localizations";
-import Loader from "../../components/Loader";
 import AuthContext from "../../context/AuthContext";
 import LocalizationContext from "../../context/LocalizationContext";
 import useHttp from "../../hooks/http.hook";
@@ -84,7 +83,7 @@ const Login: React.FunctionComponent = () => {
           >
             {loading ? (
               <div className="loader-sm">
-                <Loader />
+                <Spinner animation="border" />
               </div>
             ) : (
               LOCALIZATIONS.login.singIn[language]

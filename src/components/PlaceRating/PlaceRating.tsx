@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback, useContext } from "react";
 import { nanoid } from "nanoid";
 import { Link } from "react-router-dom";
 import StarRatings from "react-star-ratings";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, Spinner } from "react-bootstrap";
 import useHttp from "../../hooks/http.hook";
 import "./PlaceRating.scss";
 import Loader from "../Loader";
@@ -137,8 +137,8 @@ const PlaceRating: React.FunctionComponent<IPlaceRatingParams> = (
             type="submit"
           >
             {loading ? (
-              <div className="loader-sm-comment">
-                <Loader />
+              <div className="loader-sm">
+                <Spinner animation="border" />
               </div>
             ) : (
               "Publish"
