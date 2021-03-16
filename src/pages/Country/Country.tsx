@@ -5,6 +5,8 @@ import ICountryData from "../../models/country-data";
 import Loader from "../../components/Loader";
 import CountryDescription from "../../components/CountryDescription";
 import PhotoGallery from "../../components/PhotoGallery";
+import Video from "../../components/Video";
+
 
 interface ICountryPageParams {
   countryId: string;
@@ -34,6 +36,7 @@ const CountryPage: React.FunctionComponent = () => {
         <div className="country-page">
           <CountryDescription countryData={countryData} />
           <PhotoGallery countryId={countryId} />
+          <Video url={countryData?.videoUrl} />
         </div>
       ) : (
         <Loader />
