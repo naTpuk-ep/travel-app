@@ -42,7 +42,7 @@ const PlaceRating: React.FunctionComponent<IPlaceRatingParams> = (
   const getRatings = useCallback(async () => {
     try {
       const data = await request(
-        `http://localhost:3000/rating?place=${placeId}`,
+        `https://rnovikov-travel-app-backend.herokuapp.com/rating?place=${placeId}`,
         "GET"
       );
       setRatings(data);
@@ -70,7 +70,7 @@ const PlaceRating: React.FunctionComponent<IPlaceRatingParams> = (
   const publishRatingHandler = async () => {
     try {
       const data = await request(
-        "http://localhost:3000/rating/publish",
+        "https://rnovikov-travel-app-backend.herokuapp.com/rating/publish",
         "POST",
         {
           ...{
@@ -137,7 +137,7 @@ const PlaceRating: React.FunctionComponent<IPlaceRatingParams> = (
             type="submit"
           >
             {loading ? (
-              <div className="loader-sm">
+              <div className="loader-sm-comment">
                 <Loader />
               </div>
             ) : (

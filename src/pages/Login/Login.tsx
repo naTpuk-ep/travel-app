@@ -20,9 +20,13 @@ const Login: React.FunctionComponent = () => {
 
   const loginHandler = async () => {
     try {
-      const data = await request("http://localhost:3000/auth/login", "POST", {
-        ...form,
-      });
+      const data = await request(
+        "https://rnovikov-travel-app-backend.herokuapp.com/auth/login",
+        "POST",
+        {
+          ...form,
+        }
+      );
       setErrors("");
       auth.login(
         data.token,
