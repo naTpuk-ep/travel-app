@@ -64,6 +64,7 @@ const PhotoGallery: React.FunctionComponent<IPhotoGalleryParams> = (
       places.find((place) => place.photoUrl === images[index].original)?._id ||
       "0";
     setPlaceId(id);
+    setImageIndex(index);
   };
 
   return (
