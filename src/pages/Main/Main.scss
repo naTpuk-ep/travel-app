@@ -1,22 +1,18 @@
 .main-page {
   display: grid;
-  grid-gap: 15px;  
+  grid-template-columns: repeat(3, auto);
+  grid-gap: 15px;
+  justify-content: center;
 
-  // @media (max-width: 992px) {
-  //   .card-columns {
-  //     column-count: 2;
-  //   }
-  // }
+  @media (max-width: 992px) {
+    grid-template-columns: repeat(2, auto);
+  }
 
-  // @media (max-width: 768px) {
-  //   .card-columns {
-  //     column-count: 2;
-  //   }
-  // }
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(1, auto);
+  }
 
-  // @media (max-width: 576px) {
-  //   .card-columns {
-  //     column-count: 1;
-  //   }
-  // }
+  @media (max-width: 576px) {
+    grid-template-columns: repeat(1, auto);
+  }
 }

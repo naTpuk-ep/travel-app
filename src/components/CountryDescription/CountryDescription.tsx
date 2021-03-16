@@ -1,7 +1,11 @@
 /* eslint-disable no-console */
 import React, { FC, useContext } from "react";
+import { Card } from "react-bootstrap";
 import LocalizationContext from "../../context/LocalizationContext";
 import ICountryData from "../../models/country-data";
+import Currency from "../Currency";
+import Time from "../Time";
+import Weather from "../Weather";
 import "./CountryDescription.scss";
 
 interface ICountryDescriptionProps {
@@ -19,18 +23,30 @@ const CountryDescription: FC<ICountryDescriptionProps> = ({
     localizations: {
       [language]: { capital, name, description },
     },
+    timezones,
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   } = countryData!;
 
   return (
     <div className="description">
-      <img className="description__img" src={imageUrl} alt={name} />
-      <div className="description__country">
-        <img className="description__flag" src={flag} alt={name} />
-        <h1 className="description__name">{name}</h1>
-      </div>
-      <h2 className="description__capital">{`Capital: ${capital}`}</h2>
-      <p className="description__info">{description}</p>
+      <Card>
+        <Card.Img variant="top" src={imageUrl} alt={name} />
+        <Card.ImgOverlay>
+          <div className="widgetes-container">
+            <Weather countryData={countryData} />
+            <Currency localCurrency={countryData?.currency} />
+            <Time timezone={timezones[0]} />
+          </div>
+        </Card.ImgOverlay>
+      </Card>
+      <Card>
+        <Card.Body>
+          <Card.Title>{`${name}`}</Card.Title>
+          <img className="flag" src={flag} alt={name} />
+          <Card.Text>{capital}</Card.Text>
+          <Card.Text>{description}</Card.Text>
+        </Card.Body>
+      </Card>
     </div>
   );
 };

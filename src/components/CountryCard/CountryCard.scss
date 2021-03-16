@@ -2,21 +2,17 @@ $shadow-sm: 0 .125rem .25rem rgba(0,0,0,.075);
 $shadow: 0 .5rem 1rem rgba(0,0,0,.15);
 $shadow-lg: 0 1rem 3rem rgba(0,0,0,.175);
 
-.country-card {  
-  margin: 0 auto;
-  width: 20rem;  
+.country-card {
+  max-width: 24rem;
+  min-width: 18rem;
   overflow: hidden;
   box-shadow: $shadow-sm;
   transition: all 0.5s ease;
 
   &:hover {
     box-shadow: $shadow;
-    cursor: pointer;  
+    cursor: pointer;
   }
-
-  @media (max-width: 576px) {
-    width: 18rem;
-  }  
 
   &__flag-img {
     transition: all 0.5s ease-in-out;
@@ -25,9 +21,9 @@ $shadow-lg: 0 1rem 3rem rgba(0,0,0,.175);
     }
   }
 
-  &__img {        
+  &__img {
     width: auto;
-    max-height: 15rem;
-    object-fit: cover;    
-  }  
+    height: 15rem;
+    object-fit: cover;
+  }
 }

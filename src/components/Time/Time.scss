@@ -1,0 +1,17 @@
+$shadow-sm: 0 .125rem .25rem rgba(0,0,0,.075);
+
+.time {
+  box-shadow: $shadow-sm;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 5px;
+  background: #fafafac9;
+  padding: 5px;
+  & h2 {
+    text-align: center;
+  }
+  & > * {
+    margin: 0;
+  }
+}
