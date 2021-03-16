@@ -5,6 +5,7 @@ import LocalizationContext from "../../context/LocalizationContext";
 import ICountryData from "../../models/country-data";
 import Currency from "../Currency";
 import Time from "../Time";
+import Weather from "../Weather";
 import "./CountryDescription.scss";
 
 interface ICountryDescriptionProps {
@@ -37,6 +38,7 @@ const CountryDescription: FC<ICountryDescriptionProps> = ({
           <Card.Text>{description}</Card.Text>
           <Time timezone={timezones[0]} />
           <Currency localCurrency={countryData?.currency} />
+          <Weather countryData={countryData} />
         </Card.ImgOverlay>
       </Card>
     </div>
