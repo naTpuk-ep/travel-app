@@ -114,6 +114,7 @@ const Header: React.FunctionComponent<IHeaderProps> = (props: IHeaderProps) => {
             onChange={handleChangeSelect}
             as="select"
             className="header__language"
+            defaultValue={language}
           >
             <option value={Language.English}>{Language.English}</option>
             <option value={Language.Russian}>{Language.Russian}</option>

@@ -7,7 +7,6 @@ import Main from "../pages/Main";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Country from "../pages/Country";
-import Language from "../constants/languages";
 import LocalizationContext from "../context/LocalizationContext";
 import useAuth from "../hooks/auth.hook";
 import AuthContext from "../context/AuthContext";
@@ -16,10 +15,21 @@ import Login from "../pages/Login";
 import TopRating from "../pages/TopRating";
 
 const App: React.FunctionComponent = () => {
-  const [language, setLanguage] = useState(Language.English);
+  const hash =
+    "5FAAFCB0796BD5C3A42B9641047E65AA1BE70A766FC39B4A3EBEE1B8C10EA9D9";
+  const storageName = `TravelAppLanguage${hash}`;
+  const data = JSON.parse(
+    localStorage.getItem(storageName) || `{ "language": "en"}`
+  );
+
+  const [language, setLanguage] = useState(data.language);
   const [search, setSearch] = useState("");
   const { token, login, logout, userId, name, email, userImage } = useAuth();
   const isAuthenticated = !!token;
+
+  window.addEventListener("unload", () => {
+    localStorage.setItem(`${storageName}`, JSON.stringify({ language }));
+  });
 
   return (
     <>
