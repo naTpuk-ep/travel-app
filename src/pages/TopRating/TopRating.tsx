@@ -41,31 +41,28 @@ const TopRating: React.FunctionComponent = () => {
       ) : (
         topRating.map((tRating, i) => {
           return (
-            <>
-              <Card bg="light" className="rating-card" key={nanoid()}>
-                <Card.Title className="rating-card__title">
-                  {i + 1} {tRating.localizations[language].name}{" "}
-                  {LOCALIZATIONS.topRating.avarageRating[language]}
-                  <StarRatings
-                    rating={Number(tRating.average)}
-                    starRatedColor="Orange"
-                    starDimension="25px"
-                    starSpacing="1px"
-                  />
-                  ({tRating.average}){" "}
-                  {LOCALIZATIONS.topRating.basedOn[language]}{" "}
-                  {tRating.ratings.length}{" "}
-                  {LOCALIZATIONS.topRating.reviews[language]}
-                </Card.Title>
-                <Card.Img variant="top" src={tRating.photoUrl} />
-                <Card.Body>
-                  <Card.Text>
-                    {tRating.localizations[language].description}
-                  </Card.Text>
-                </Card.Body>
-                <PlaceRating placeId={tRating._id} isCommentable={false} />
-              </Card>
-            </>
+            <Card bg="light" className="rating-card" key={nanoid()}>
+              <Card.Title className="rating-card__title">
+                {i + 1} {tRating.localizations[language].name}{" "}
+                {LOCALIZATIONS.topRating.avarageRating[language]}
+                <StarRatings
+                  rating={Number(tRating.average)}
+                  starRatedColor="Orange"
+                  starDimension="25px"
+                  starSpacing="1px"
+                />
+                ({tRating.average}) {LOCALIZATIONS.topRating.basedOn[language]}{" "}
+                {tRating.ratings.length}{" "}
+                {LOCALIZATIONS.topRating.reviews[language]}
+              </Card.Title>
+              <Card.Img variant="top" src={tRating.photoUrl} />
+              <Card.Body>
+                <Card.Text>
+                  {tRating.localizations[language].description}
+                </Card.Text>
+              </Card.Body>
+              <PlaceRating placeId={tRating._id} isCommentable={false} />
+            </Card>
           );
         })
       )}
