@@ -1,7 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useCallback, useContext, useEffect, useState } from "react";
-import { Card } from "react-bootstrap";
-import "./TopRating.scss";
+import { Badge, Card } from "react-bootstrap";
 import { nanoid } from "nanoid";
 import StarRatings from "react-star-ratings";
 import Loader from "../../components/Loader";
@@ -10,6 +9,7 @@ import LOCALIZATIONS from "../../assets/data/localizations";
 import useHttp from "../../hooks/http.hook";
 import IPlaceAverageRatingData from "../../models/place-average-rating-data";
 import PlaceRating from "../../components/PlaceRating";
+import "./TopRating.scss";
 
 const TopRating: React.FunctionComponent = () => {
   const language = useContext(LocalizationContext);
@@ -34,27 +34,34 @@ const TopRating: React.FunctionComponent = () => {
   }, [getTopAverageRating]);
 
   return (
-    <>
-      <h2>{LOCALIZATIONS.topRating.header[language]}</h2>
+    <div className="rating-page">
+      <h2>
+        <Badge variant="secondary">
+          {LOCALIZATIONS.topRating.header[language]}
+        </Badge>
+      </h2>
       {loading ? (
         <Loader />
       ) : (
         topRating.map((tRating, i) => {
           return (
             <Card bg="light" className="rating-card" key={nanoid()}>
-              <Card.Title className="rating-card__title">
-                {i + 1} {tRating.localizations[language].name}{" "}
-                {LOCALIZATIONS.topRating.avarageRating[language]}
+              <Card.Header className="rating-card__header">
                 <StarRatings
+                  className="mr1"
                   rating={Number(tRating.average)}
                   starRatedColor="Orange"
                   starDimension="25px"
                   starSpacing="1px"
                 />
-                ({tRating.average}) {LOCALIZATIONS.topRating.basedOn[language]}{" "}
-                {tRating.ratings.length}{" "}
-                {LOCALIZATIONS.topRating.reviews[language]}
-              </Card.Title>
+                <span>
+                  {i + 1} {tRating.localizations[language].name}{" "}
+                  {LOCALIZATIONS.topRating.avarageRating[language]} (
+                  {tRating.average}) {LOCALIZATIONS.topRating.basedOn[language]}{" "}
+                  {tRating.ratings.length}{" "}
+                  {LOCALIZATIONS.topRating.reviews[language]}
+                </span>
+              </Card.Header>
               <Card.Img variant="top" src={tRating.photoUrl} />
               <Card.Body>
                 <Card.Text>
@@ -66,7 +73,7 @@ const TopRating: React.FunctionComponent = () => {
           );
         })
       )}
-    </>
+    </div>
   );
 };
 
