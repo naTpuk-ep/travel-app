@@ -64,6 +64,23 @@ const LOCALIZATIONS = {
       de: "Einloggen",
     },
   },
+  topRating: {
+    avarageRating: {
+      en: "average rating",
+      ru: "средний рейтинг",
+      de: "durchschnittliche Bewertung",
+    },
+    basedOn: {
+      en: "based on",
+      ru: "на основе",
+      de: "basierend auf",
+    },
+    reviews: {
+      en: "reviews",
+      ru: "отзыва(-ов)",
+      de: "Bewertungen",
+    },
+  },
   template: {
     en: "",
     ru: "",
