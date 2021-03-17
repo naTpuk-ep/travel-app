@@ -86,6 +86,38 @@ const LOCALIZATIONS = {
       de: "Bewertungen",
     },
   },
+  photoGallery: {
+    you: {
+      en: "You",
+      ru: "Вы",
+      de: "Sie",
+    },
+    comment: {
+      en: "Comment",
+      ru: "Kомментарий",
+      de: "Kommentar",
+    },
+    commentDescription: {
+      en: "Leave short comment (60 characters)",
+      ru: "Оставьте короткий комментарий (60 символов)",
+      de: "Hinterlasse einen kurzen Kommentar (60 Zeichen)",
+    },
+    leaveRating: {
+      en: "To leave rating please",
+      ru: "Для того, чтобы оставить рейтинг пожалуйста",
+      de: "Um eine Bewertung abzugeben, bitte",
+    },
+    publish: {
+      en: "Publish",
+      ru: "Опубликовывать",
+      de: "Veröffentlichen",
+    },
+    login: {
+      en: "Sign in",
+      ru: "Авторизуйтесь",
+      de: "Einloggen",
+    },
+  },
   template: {
     en: "",
     ru: "",
