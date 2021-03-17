@@ -83,7 +83,7 @@ const Header: React.FunctionComponent<IHeaderProps> = (props: IHeaderProps) => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           {isHome ? (
-            <Form inline onSubmit={handleSubmitForm}>
+            <Form inline onSubmit={handleSubmitForm} className="header__search">
               <InputGroup className="mr-sm-2">
                 <FormControl
                   onChange={handleChangeSearch}
@@ -105,11 +105,11 @@ const Header: React.FunctionComponent<IHeaderProps> = (props: IHeaderProps) => {
           ) : (
             ""
           )}
-          <LinkContainer to={routes.TOP_PLACE_RATING}>
+          {/* <LinkContainer to={routes.TOP_PLACE_RATING}>
             <div className="header__toprating-link">
               {LOCALIZATIONS.header.topPlaces[language]}
             </div>
-          </LinkContainer>
+          </LinkContainer> */}
           <Form.Control
             onChange={handleChangeSelect}
             as="select"
