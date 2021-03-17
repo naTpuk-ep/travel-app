@@ -1,13 +1,17 @@
+/* eslint-disable no-underscore-dangle */
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
+import "./TopRating.scss";
+import { nanoid } from "nanoid";
+import StarRatings from "react-star-ratings";
 import Loader from "../../components/Loader";
-import AuthContext from "../../context/AuthContext";
 import LocalizationContext from "../../context/LocalizationContext";
+import LOCALIZATIONS from "../../assets/data/localizations";
 import useHttp from "../../hooks/http.hook";
 import IPlaceAverageRatingData from "../../models/place-average-rating-data";
+import PlaceRating from "../../components/PlaceRating";
 
 const TopRating: React.FunctionComponent = () => {
-  const auth = useContext(AuthContext);
   const language = useContext(LocalizationContext);
   const { loading, request } = useHttp();
 
@@ -16,7 +20,7 @@ const TopRating: React.FunctionComponent = () => {
   const getTopAverageRating = useCallback(async () => {
     try {
       const data = await request(
-        "http://localhost:3000/places/average-rating",
+        "https://rnovikov-travel-app-backend.herokuapp.com/places/average-rating",
         "GET"
       );
       setTopRating(data);
@@ -34,20 +38,33 @@ const TopRating: React.FunctionComponent = () => {
       {loading ? (
         <Loader />
       ) : (
-        topRating.map((tRating) => {
+        topRating.map((tRating, i) => {
           return (
-            <Card bg="light">
-              <Card.Title className="country-card__flag-img">
-                {tRating.localizations[language].name}
-                {tRating.average}
-              </Card.Title>
-              <Card.Img variant="top" src={tRating.photoUrl} />
-              <Card.Body>
-                <Card.Text>
-                  {tRating.localizations[language].description}
-                </Card.Text>
-              </Card.Body>
-            </Card>
+            <>
+              <Card bg="light" key={nanoid()}>
+                <Card.Title className="rating-card__title">
+                  {i + 1} {tRating.localizations[language].name}{" "}
+                  {LOCALIZATIONS.topRating.avarageRating[language]}
+                  <StarRatings
+                    rating={Number(tRating.average)}
+                    starRatedColor="Orange"
+                    starDimension="25px"
+                    starSpacing="1px"
+                  />
+                  ({tRating.average}){" "}
+                  {LOCALIZATIONS.topRating.basedOn[language]}{" "}
+                  {tRating.ratings.length}{" "}
+                  {LOCALIZATIONS.topRating.reviews[language]}
+                </Card.Title>
+                <Card.Img variant="top" src={tRating.photoUrl} />
+                <Card.Body>
+                  <Card.Text>
+                    {tRating.localizations[language].description}
+                  </Card.Text>
+                </Card.Body>
+                <PlaceRating placeId={tRating._id} isCommentable={false} />
+              </Card>
+            </>
           );
         })
       )}
