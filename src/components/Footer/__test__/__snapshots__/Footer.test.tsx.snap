@@ -7,7 +7,83 @@ exports[`should render footer component should render footer component 1`] = `
   <div
     className="footer"
   >
-    Footer
+    <Nav
+      className="mr-auto"
+      fill={false}
+      justify={false}
+    >
+      <h5
+        className="authors"
+      >
+        Authors:
+           
+      </h5>
+      <NavLink
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "render": [Function],
+          }
+        }
+        disabled={false}
+        href="https://github.com/DmitryAstapenko"
+      >
+        DmitryAstapenko
+      </NavLink>
+      <NavLink
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "render": [Function],
+          }
+        }
+        disabled={false}
+        href="https://github.com/RamanNovikau"
+      >
+        RamanNovikau
+      </NavLink>
+      <NavLink
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "render": [Function],
+          }
+        }
+        disabled={false}
+        href="https://github.com/naTpuk-ep"
+      >
+        YauheniPiatrou
+      </NavLink>
+      <NavLink
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "render": [Function],
+          }
+        }
+        disabled={false}
+        href="https://github.com/zhenyamarinovich"
+      >
+        ZhenyaMarinovich
+      </NavLink>
+    </Nav>
+    <span
+      className="year"
+    >
+      2021
+    </span>
+    <div
+      className="logo"
+    >
+      <a
+        href="https://rs.school/js/"
+      >
+        <img
+          alt="RS-school"
+          src="https://rs.school/images/rs_school_js.svg"
+        />
+      </a>
+    </div>
   </div>
 </Container>
 `;
