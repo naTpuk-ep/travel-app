@@ -1,5 +1,4 @@
 import React, { FC, useCallback, useContext, useEffect, useState } from "react";
-import LOCALIZATIONS from "../../assets/data/localizations";
 import LocalizationContext from "../../context/LocalizationContext";
 import ITime from "../../models/time";
 import "./Time.scss";
@@ -8,7 +7,7 @@ interface ITimeProps {
   timezone: string;
 }
 
-const Time: FC<ITimeProps> = ({ timezone }: ITimeProps) => {
+const Time: FC<ITimeProps> = ({ timezone }: ITimeProps): JSX.Element => {
   const language = useContext(LocalizationContext);
   const addZero = (number: number) => `${number < 10 ? "0" : ""}${number}`;
   const clockTimeZone = useCallback(() => {
@@ -25,16 +24,9 @@ const Time: FC<ITimeProps> = ({ timezone }: ITimeProps) => {
     const minute = addZero(timeOfZone.getMinutes());
     const second = addZero(timeOfZone.getSeconds());
     const date = addZero(timeOfZone.getDate());
-    const month = LOCALIZATIONS.time.months[language][timeOfZone.getMonth()];
-    const day = LOCALIZATIONS.time.days[language][timeOfZone.getDay() - 1];
-    return {
-      hour,
-      minute,
-      date,
-      month,
-      day,
-      second,
-    };
+    const month = timeOfZone.toLocaleString(language, { month: "long" });
+    const day = timeOfZone.toLocaleString(language, { weekday: "long" });
+    return { hour, minute, date, month, day, second };
   }, [language, timezone]);
 
   const [time, setTime] = useState<ITime>(clockTimeZone());

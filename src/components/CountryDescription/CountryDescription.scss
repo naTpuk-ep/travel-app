@@ -1,6 +1,13 @@
 $shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 
 .description {
+  & .mini-loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
   color: black;
   & .card-img-top {
     min-width: 900px;
@@ -26,7 +33,7 @@ $shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
     box-shadow: $shadow;
   }
   & .card:first-of-type {
-    max-height: 594px
+    max-height: 594px;
   }
   & .card-title {
     text-align: center;
@@ -48,9 +55,9 @@ $shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 
 @media (max-width: 992px) {
   .description {
-  & .card:first-of-type {
-    height: 376px;
-  }
+    & .card:first-of-type {
+      height: 376px;
+    }
   }
 }
 

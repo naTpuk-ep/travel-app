@@ -9,10 +9,10 @@ import React, {
   useEffect,
   useState,
 } from "react";
+import { Spinner } from "react-bootstrap";
 import LOCALIZATIONS from "../../assets/data/localizations";
 import CurrencyConverts from "../../constants/currencyConverts";
 import LocalizationContext from "../../context/LocalizationContext";
-import Loader from "../Loader";
 import "./Currency.scss";
 
 interface ICurrencies {
@@ -109,7 +109,9 @@ const Currency: FC<IcurrencyProps> = ({ localCurrency }: IcurrencyProps) => {
       ) : error && !minimized ? (
         <h6 className="error">{error}</h6>
       ) : (
-        <Loader />
+        <div className="mini-loader">
+          <Spinner animation="border" />
+        </div>
       )}
     </div>
   );

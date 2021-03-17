@@ -1,8 +1,8 @@
 /* eslint-disable no-nested-ternary */
 import axios from "axios";
 import React, { createRef, FC, useContext, useEffect, useState } from "react";
+import { Spinner } from "react-bootstrap";
 import ICountryData from "../../models/country-data";
-import Loader from "../Loader";
 import "./Weather.scss";
 import LOCALIZATIONS from "../../assets/data/localizations";
 import LocalizationContext from "../../context/LocalizationContext";
@@ -100,7 +100,9 @@ const Weather: FC<IWeatherProps> = ({ countryData }: IWeatherProps) => {
       ) : error && !minimized ? (
         <p className="error">{error}</p>
       ) : (
-        <Loader />
+        <div className="mini-loader">
+          <Spinner animation="border" />
+        </div>
       )}
     </div>
   );
