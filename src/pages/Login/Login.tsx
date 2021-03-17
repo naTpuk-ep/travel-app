@@ -3,6 +3,8 @@ import { Form, Button, Card, Spinner } from "react-bootstrap";
 import LOCALIZATIONS from "../../assets/data/localizations";
 import AuthContext from "../../context/AuthContext";
 import LocalizationContext from "../../context/LocalizationContext";
+import AUTH_ERRORS_LOCALIZATIONS from "../../assets/data/authLocalizations";
+import { LoginErrors } from "../../constants/authErrors";
 import useHttp from "../../hooks/http.hook";
 import "../Registration/Registration.scss";
 
@@ -10,7 +12,7 @@ const Login: React.FunctionComponent = () => {
   const auth = useContext(AuthContext);
   const language = useContext(LocalizationContext);
   const { loading, request } = useHttp();
-  const [errors, setErrors] = useState("");
+  const [errors, setErrors] = useState("" as LoginErrors);
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -22,6 +24,7 @@ const Login: React.FunctionComponent = () => {
 
   const loginHandler = async () => {
     try {
+      setErrors("" as LoginErrors);
       const data = await request(
         "https://rnovikov-travel-app-backend.herokuapp.com/auth/login",
         "POST",
@@ -29,7 +32,6 @@ const Login: React.FunctionComponent = () => {
           ...form,
         }
       );
-      setErrors("");
       auth.login(
         data.token,
         data.userId,
@@ -38,7 +40,7 @@ const Login: React.FunctionComponent = () => {
         data.userImage
       );
     } catch (e) {
-      setErrors(e.response.data.message);
+      setErrors(e.response.data.message as LoginErrors);
     }
   };
 
@@ -73,7 +75,9 @@ const Login: React.FunctionComponent = () => {
               isInvalid={!!errors}
             />
           </Form.Group>
-          <Form.Text className="text-danger txt-lg mb-2">{errors}</Form.Text>
+          <Form.Text className="text-danger txt-lg mb-2">
+            {errors ? AUTH_ERRORS_LOCALIZATIONS.login[errors][language] : ""}
+          </Form.Text>
           <Button
             block
             onClick={loginHandler}
