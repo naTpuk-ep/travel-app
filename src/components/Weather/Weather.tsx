@@ -57,7 +57,6 @@ const Weather: FC<IWeatherProps> = ({ countryData }: IWeatherProps) => {
           setError("Error loading weather data");
         });
       if (res) {
-        console.log(res.data);
         setError(undefined);
         const {
           main: { temp, humidity },
@@ -76,8 +75,6 @@ const Weather: FC<IWeatherProps> = ({ countryData }: IWeatherProps) => {
 
     getWeather();
   }, [countryData, language]);
-
-  console.log(weatherData);
 
   return (
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events
