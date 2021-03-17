@@ -11,9 +11,9 @@ const LOCALIZATIONS = {
       de: "Windstärke",
     },
     units: {
-      ru: "км/ч",
-      en: "km/h",
-      de: "km/h",
+      ru: "м/с",
+      en: "m/s",
+      de: "m/s",
     },
   },
   time: {

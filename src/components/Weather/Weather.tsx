@@ -50,13 +50,14 @@ const Weather: FC<IWeatherProps> = ({ countryData }: IWeatherProps) => {
     const getWeather = async () => {
       const res = await axios
         .get(
-          `https://api.openweathermap.org/data/2.5/weather?q=${countryData?.localizations[language].capital}&lang=${language}&appid=${APIKey}&units=metric`
+          `https://api.openweathermap.org/data/2.5/weather?q=${countryData?.localizations.en.capital}&lang=${language}&appid=${APIKey}&units=metric`
         )
         .then((response) => response)
         .catch(() => {
           setError("Error loading weather data");
         });
       if (res) {
+        console.log(res.data);
         setError(undefined);
         const {
           main: { temp, humidity },
@@ -76,6 +77,8 @@ const Weather: FC<IWeatherProps> = ({ countryData }: IWeatherProps) => {
     getWeather();
   }, [countryData, language]);
 
+  console.log(weatherData);
+
   return (
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events
     <div
@@ -91,7 +94,6 @@ const Weather: FC<IWeatherProps> = ({ countryData }: IWeatherProps) => {
             <h1>{`${Math.round(weatherData.temp)} ℃`} </h1>
             <p>{`${LOCALIZATIONS.weather.humidity[language]}: ${weatherData.humidity} %`}</p>
             <p>{`${LOCALIZATIONS.weather.windSpeed[language]}: ${weatherData.wind.speed} ${LOCALIZATIONS.weather.units[language]}`}</p>
-            {/* <p>{weatherData.de}</p> */}
           </div>
           <div className="weather__right">
             <i className={`owf owf-${weatherData.id}-d owf-5x`} />
