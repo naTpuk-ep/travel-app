@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render loader component should render loader component 1`] = `
+<div
+  className="loader"
+>
+  <Spinner
+    animation="border"
+  />
+</div>
+`;
