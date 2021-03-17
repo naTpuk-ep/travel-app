@@ -7,7 +7,6 @@ import ICountryData from "../../models/country-data";
 import "./Map.scss";
 import geoData from "../../assets/geoJson/countries";
 import markerIcon from "../../assets/images/marker.png";
-import fullScreenImage from "../../assets/images/fullscreen.png";
 
 interface IMapProps {
   countryData: ICountryData | undefined;
@@ -62,17 +61,13 @@ class Map extends React.Component<IMapProps> {
     return (
       <div className="map-container">
         <Button
-          variant="dark"
+          variant="white"
           className="fullscreen-btn"
           onClick={(e) => {
             this.fullScreen(e);
           }}
         >
-          <img
-            src={fullScreenImage}
-            alt="fullScreen"
-            className="fullscreen-btn-image"
-          />
+          <span className="fullscreen-btn-span">⇲</span>
         </Button>
         <MapContainer
           center={position}
