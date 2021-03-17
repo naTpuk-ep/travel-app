@@ -17,7 +17,7 @@
   &__logo {
     margin: 0;
     font-size: 2rem;
-    width: 13rem;
+    width: 12rem;
 
     &:hover {
       cursor: pointer;
@@ -58,18 +58,7 @@
       font-weight: bold;
     }
   }
-
-  // &__toprating {
-  //   &-link {
-  //     font-size: 16px;
-  //     text-decoration: underline;
-  //     &:hover {
-  //       cursor: pointer;
-  //       opacity: 0.8;
-  //     }
-  //   }
-  // }
-
+  
   &__authbar {
     margin-left: 0.75rem;
     display: flex;

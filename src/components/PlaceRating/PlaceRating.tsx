@@ -1,14 +1,16 @@
 import React, { useState, useEffect, useCallback, useContext } from "react";
 import { nanoid } from "nanoid";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import StarRatings from "react-star-ratings";
 import { Button, Form, Spinner } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 import useHttp from "../../hooks/http.hook";
 import LOCALIZATIONS from "../../assets/data/localizations";
 import LocalizationContext from "../../context/LocalizationContext";
 import "./PlaceRating.scss";
 import Loader from "../Loader";
 import AuthContext from "../../context/AuthContext";
+import routes from "../../constants/routes";
 
 interface IPlaceRatingParams {
   placeId: string;
@@ -33,6 +35,7 @@ interface IRating {
 const PlaceRating: React.FunctionComponent<IPlaceRatingParams> = (
   props: IPlaceRatingParams
 ) => {
+  const location = useLocation();
   const { placeId, isCommentable } = props;
   const language = useContext(LocalizationContext);
   const { loading, request } = useHttp();
@@ -105,6 +108,15 @@ const PlaceRating: React.FunctionComponent<IPlaceRatingParams> = (
 
   return (
     <div className="rating-container">
+      {routes.TOP_PLACE_RATING !== location.pathname ? (
+        <LinkContainer to={routes.TOP_PLACE_RATING}>
+          <Button variant="primary" block>
+            {LOCALIZATIONS.header.topPlaces[language]}
+          </Button>
+        </LinkContainer>
+      ) : (
+        ""
+      )}
       {isCommentable ? (
         <>
           {auth.isAuthenticated ? (

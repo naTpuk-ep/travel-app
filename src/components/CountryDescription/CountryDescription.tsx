@@ -29,7 +29,7 @@ const CountryDescription: FC<ICountryDescriptionProps> = ({
 
   return (
     <div className="description">
-      <Card>
+      <Card bg="light">
         <Card.Img variant="top" src={imageUrl} alt={name} />
         <Card.ImgOverlay>
           <div className="widgetes-container">
@@ -39,7 +39,7 @@ const CountryDescription: FC<ICountryDescriptionProps> = ({
           </div>
         </Card.ImgOverlay>
       </Card>
-      <Card>
+      <Card bg="light">
         <Card.Body>
           <Card.Title>{`${name}`}</Card.Title>
           <img className="flag" src={flag} alt={name} />

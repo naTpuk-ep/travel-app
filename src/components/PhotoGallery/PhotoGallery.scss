@@ -1,4 +1,5 @@
 @import "node_modules/react-image-gallery/styles/scss/image-gallery.scss";
+$shadow: 0 .5rem 1rem rgba(0,0,0,.15);
 
 .img-gallery {
   max-width: 800px;
@@ -12,12 +13,12 @@
   }
 }
 
-.card-row {
-  padding: 5px;
+.card-row { 
   flex-direction: row;
+  overflow: hidden;
+  box-shadow: $shadow;
 
   @media screen and (max-width: 1200px) {
     flex-direction: column;
-    margin: auto;
   }
 }

@@ -2,7 +2,7 @@ import L, { LatLngExpression } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { MapContainer, Marker, TileLayer, Popup, Polygon } from "react-leaflet";
 import React from "react";
-import { Button } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 import ICountryData from "../../models/country-data";
 import "./Map.scss";
 import geoData from "../../assets/geoJson/countries";
@@ -59,7 +59,7 @@ class Map extends React.Component<IMapProps> {
     // const { latitude, longitude, data } = this.state;
     const position: LatLngExpression = [latitude, longitude];
     return (
-      <div className="map-container">
+      <Card bg="light" className="map-container">
         <Button
           variant="white"
           className="fullscreen-btn"
@@ -86,7 +86,7 @@ class Map extends React.Component<IMapProps> {
           </Marker>
           <Polygon pathOptions={this.redOptions} positions={data} />
         </MapContainer>
-      </div>
+      </Card>
     );
   }
 }

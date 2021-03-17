@@ -105,11 +105,6 @@ const Header: React.FunctionComponent<IHeaderProps> = (props: IHeaderProps) => {
           ) : (
             ""
           )}
-          {/* <LinkContainer to={routes.TOP_PLACE_RATING}>
-            <div className="header__toprating-link">
-              {LOCALIZATIONS.header.topPlaces[language]}
-            </div>
-          </LinkContainer> */}
           <Form.Control
             onChange={handleChangeSelect}
             as="select"

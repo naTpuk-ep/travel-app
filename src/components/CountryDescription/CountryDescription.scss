@@ -1,6 +1,6 @@
 $shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 
-.description {
+.description {  
   color: black;
 
   & .mini-loader {
@@ -37,7 +37,6 @@ $shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
   }
 
   & .card {
-    background-color: white !important;
     box-shadow: $shadow;
   }
 

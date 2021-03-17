@@ -10,23 +10,27 @@ $shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
   display: flex;
   width: 260px;
   background: #fff;
-  border-radius: 5px;
+  border-radius: 0.25rem;
+
   & .error {
     color: red;
   }
+
   & h4 {
-    font-size: 15px;
+    font-size: 1rem;
     margin: 0;
   }
-  & h1 {
+
+  &__degrees {
+    font-size: 3rem;
     text-align: center;
-    margin-bottom: 20px;
-    margin-top: 10px;
   }
+
   &__left {
     width: 60%;
     padding: 10px;
   }
+
   &__right {
     width: 42%;
     display: flex;
@@ -38,9 +42,10 @@ $shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
     padding: 10px;
     margin: 0;
   }
+
   & p {
     margin: 0;
-    font-size: 13px;
+    font-size: 14px;
   }
 }
 
@@ -48,17 +53,18 @@ $shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
   .weather.minimized {
     width: 50px;
     height: 50px;
+    cursor: pointer;
+
     & .weather__left {
       display: none;
     }
+
     & .weather__right {
       background: none;
       transform: scale(0.6) translate(23px, 0);
       padding: 0;
     }
 
-    cursor: pointer;
-    height: 50px;
     h4 {
       display: none;
     }
@@ -67,6 +73,6 @@ $shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
 
 @media (max-width: 500px) {
   .weather {
-    margin-top: 73px;
+    margin-top: 90px;
   }
 }
