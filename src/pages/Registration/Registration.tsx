@@ -1,17 +1,22 @@
 import React, { useState, useContext } from "react";
 import ImageUploader from "react-images-upload";
-import { Form, Button, Card } from "react-bootstrap";
+import { Form, Button, Card, Spinner } from "react-bootstrap";
 import useHttp from "../../hooks/http.hook";
 import "./Registration.scss";
 import AuthContext from "../../context/AuthContext";
 import LOCALIZATIONS from "../../assets/data/localizations";
+import AUTH_ERRORS_LOCALIZATIONS from "../../assets/data/authLocalizations";
 import LocalizationContext from "../../context/LocalizationContext";
+import { RegistratinErrors } from "../../constants/authErrors";
 
 const Registration: React.FunctionComponent = () => {
   const auth = useContext(AuthContext);
   const language = useContext(LocalizationContext);
   const { loading, request } = useHttp();
-  const [errors, setErrors] = useState("");
+  const [errors, setErrors] = useState("" as RegistratinErrors);
+  const [inputErrors, setInputErrors] = useState<
+    { value: string; msg: string; param: string; location: string }[]
+  >([]);
   const [form, setForm] = useState({
     email: "",
     name: "",
@@ -25,20 +30,36 @@ const Registration: React.FunctionComponent = () => {
 
   const registerHandler = async () => {
     try {
+      setErrors("" as RegistratinErrors);
+      setInputErrors([]);
       const data = await request(
         "https://rnovikov-travel-app-backend.herokuapp.com/auth/register",
         "POST",
         { ...form }
       );
-      setErrors("");
-      auth.login(data.token, data.userId, data.name, data.userImage);
+      auth.login(
+        data.token,
+        data.userId,
+        data.name,
+        data.email,
+        data.userImage
+      );
     } catch (e) {
-      setErrors(e.response.data.message);
+      setErrors(e.response.data.message as RegistratinErrors);
+      if (e.response.data.errors) {
+        setInputErrors(e.response.data.errors);
+      }
     }
   };
 
   const onDrop = (files: File[], picture: string[]) => {
     setForm({ ...form, userImage: picture });
+  };
+
+  const findError = (msg: string) => {
+    return inputErrors.find((error) => {
+      return error.param === msg;
+    });
   };
 
   return (
@@ -56,8 +77,13 @@ const Registration: React.FunctionComponent = () => {
               name="email"
               type="email"
               placeholder="Enter email"
-              isInvalid={!!errors}
+              isInvalid={!!findError("email")}
             />
+            <Form.Text className="text-danger txt-lg mb-2">
+              {findError("email")
+                ? AUTH_ERRORS_LOCALIZATIONS.registration.email[language]
+                : ""}
+            </Form.Text>
           </Form.Group>
           <Form.Group controlId="name">
             <Form.Label>{LOCALIZATIONS.registration.name[language]}</Form.Label>
@@ -67,8 +93,13 @@ const Registration: React.FunctionComponent = () => {
               name="name"
               type="text"
               placeholder="Enter name"
-              isInvalid={!!errors}
+              isInvalid={!!findError("name")}
             />
+            <Form.Text className="text-danger txt-lg mb-2">
+              {findError("name")
+                ? AUTH_ERRORS_LOCALIZATIONS.registration.email[language]
+                : ""}
+            </Form.Text>
           </Form.Group>
           <Form.Group controlId="password">
             <Form.Label>
@@ -80,8 +111,13 @@ const Registration: React.FunctionComponent = () => {
               name="password"
               type="password"
               placeholder="Password"
-              isInvalid={!!errors}
+              isInvalid={!!findError("password")}
             />
+            <Form.Text className="text-danger txt-lg mb-2">
+              {findError("password")
+                ? AUTH_ERRORS_LOCALIZATIONS.registration.email[language]
+                : ""}
+            </Form.Text>
           </Form.Group>
           <ImageUploader
             withPreview
@@ -93,7 +129,11 @@ const Registration: React.FunctionComponent = () => {
             imgExtension={[".jpg", ".gif", ".png", ".gif"]}
             maxFileSize={5242880}
           />
-          <Form.Text className="text-danger txt-lg mb-2">{errors}</Form.Text>
+          <Form.Text className="text-danger txt-lg mb-2">
+            {errors
+              ? AUTH_ERRORS_LOCALIZATIONS.registration[errors][language]
+              : ""}
+          </Form.Text>
           <Button
             block
             onClick={registerHandler}
@@ -101,7 +141,13 @@ const Registration: React.FunctionComponent = () => {
             variant="primary"
             type="submit"
           >
-            {LOCALIZATIONS.registration.create[language]}
+            {loading ? (
+              <div className="loader-sm">
+                <Spinner animation="border" />
+              </div>
+            ) : (
+              LOCALIZATIONS.registration.create[language]
+            )}
           </Button>
         </Form>
       </Card>

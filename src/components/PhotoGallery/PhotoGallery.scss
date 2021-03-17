@@ -1,0 +1,23 @@
+@import "node_modules/react-image-gallery/styles/scss/image-gallery.scss";
+
+.img-gallery {
+  max-width: 800px;
+
+  @media (max-width: 1200px) {
+    max-width: inherit;
+  }
+
+  @media (max-width: 768px) {
+    max-width: inherit;
+  }
+}
+
+.card-row {
+  padding: 5px;
+  flex-direction: row;
+
+  @media screen and (max-width: 1200px) {
+    flex-direction: column;
+    margin: auto;
+  }
+}

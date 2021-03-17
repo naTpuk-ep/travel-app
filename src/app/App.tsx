@@ -17,7 +17,7 @@ import TopRating from "../pages/TopRating";
 
 const App: React.FunctionComponent = () => {
   const [language, setLanguage] = useState(Language.English);
-  const { token, login, logout, userId, name, userImage } = useAuth();
+  const { token, login, logout, userId, name, email, userImage } = useAuth();
   const isAuthenticated = !!token;
 
   return (
@@ -29,6 +29,7 @@ const App: React.FunctionComponent = () => {
           logout,
           userId,
           name,
+          email,
           userImage,
           isAuthenticated,
         }}
