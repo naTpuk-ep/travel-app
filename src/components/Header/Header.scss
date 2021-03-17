@@ -7,6 +7,14 @@
     justify-content: flex-end;
   }
 
+  & .input-group-text {
+    transition: all 0.25s ease;
+    &:hover {
+      cursor: pointer;
+      font-weight: 900;
+    }
+  }
+
   &__logo {
     margin: 0;
     font-size: 2rem;

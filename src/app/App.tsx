@@ -17,6 +17,7 @@ import TopRating from "../pages/TopRating";
 
 const App: React.FunctionComponent = () => {
   const [language, setLanguage] = useState(Language.English);
+  const [search, setSearch] = useState("");
   const { token, login, logout, userId, name, email, userImage } = useAuth();
   const isAuthenticated = !!token;
 
@@ -38,6 +39,7 @@ const App: React.FunctionComponent = () => {
           <header>
             <Header
               changeLanguage={setLanguage}
+              changeSearch={setSearch}
               isAuthenticated={isAuthenticated}
             />
           </header>
@@ -45,7 +47,7 @@ const App: React.FunctionComponent = () => {
             <Container className="main">
               <Switch>
                 <Route exact path={routes.HOME}>
-                  <Main />
+                  <Main search={search} />
                 </Route>
                 <Route exact path={routes.COUNTRY}>
                   <Country />

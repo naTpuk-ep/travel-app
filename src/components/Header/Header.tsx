@@ -1,23 +1,49 @@
-import React, { ChangeEvent, useContext } from "react";
-import { Container, Form, Button, Image, Navbar } from "react-bootstrap";
+import React, {
+  ChangeEvent,
+  FormEvent,
+  MutableRefObject,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+import {
+  Container,
+  Form,
+  Button,
+  Image,
+  Navbar,
+  FormControl,
+  InputGroup,
+} from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
+import { useLocation } from "react-router-dom";
 import Language from "../../constants/languages";
 import LOCALIZATIONS from "../../assets/data/localizations";
 import LocalizationContext from "../../context/LocalizationContext";
 import AuthContext from "../../context/AuthContext";
 import routes from "../../constants/routes";
-
 import "./Header.scss";
 
 interface IHeaderProps {
   changeLanguage: (language: Language) => void;
+  changeSearch: (search: string) => void;
   isAuthenticated: boolean;
 }
 
 const Header: React.FunctionComponent<IHeaderProps> = (props: IHeaderProps) => {
   const language = useContext(LocalizationContext);
   const auth = useContext(AuthContext);
+  const [search, setSearch] = useState("");
+  const [isHome, setIsHome] = useState(false);
+  const location = useLocation();
+  const inputSearch: MutableRefObject<HTMLInputElement | null> = useRef(null);
   const { isAuthenticated } = props;
+
+  useEffect(() => {
+    inputSearch.current?.focus();
+    setIsHome(routes.HOME === location.pathname);
+  }, [location, isHome]);
 
   const logoutHandler = (event: React.MouseEvent<HTMLElement>) => {
     event.preventDefault();
@@ -27,6 +53,23 @@ const Header: React.FunctionComponent<IHeaderProps> = (props: IHeaderProps) => {
   const handleChangeSelect = (event: ChangeEvent<{ value: string }>) => {
     const value: Language = event.target.value as Language;
     props.changeLanguage(value);
+  };
+
+  const handleChangeSearch = (event: ChangeEvent<{ value: string }>) => {
+    const value: string = event.target.value as string;
+    props.changeSearch(value);
+    setSearch(value);
+  };
+
+  const handleSubmitForm = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const value: string = inputSearch.current?.value as string;
+    props.changeSearch(value);
+  };
+
+  const handleClickClear = () => {
+    props.changeSearch("");
+    setSearch("");
   };
 
   return (
@@ -39,6 +82,29 @@ const Header: React.FunctionComponent<IHeaderProps> = (props: IHeaderProps) => {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
+          {isHome ? (
+            <Form inline onSubmit={handleSubmitForm}>
+              <InputGroup className="mr-sm-2">
+                <FormControl
+                  onChange={handleChangeSearch}
+                  value={search}
+                  type="text"
+                  placeholder={LOCALIZATIONS.header.placeholder[language]}
+                  ref={inputSearch}
+                />
+                <InputGroup.Append>
+                  <InputGroup.Text onClick={handleClickClear}>
+                    ✖
+                  </InputGroup.Text>
+                </InputGroup.Append>
+              </InputGroup>
+              <Button variant="success" type="submit">
+                {LOCALIZATIONS.header.search[language]}
+              </Button>
+            </Form>
+          ) : (
+            ""
+          )}
           <LinkContainer to={routes.TOP_PLACE_RATING}>
             <div className="header__toprating-link">
               {LOCALIZATIONS.header.topPlaces[language]}
