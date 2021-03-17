@@ -1,4 +1,9 @@
 const LOCALIZATIONS = {
+  authors: {
+    ru: "Авторы",
+    en: "Authors",
+    de: "Autoren",
+  },
   weather: {
     humidity: {
       ru: "Влажность",
