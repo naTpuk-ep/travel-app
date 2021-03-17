@@ -13,6 +13,7 @@ import useAuth from "../hooks/auth.hook";
 import AuthContext from "../context/AuthContext";
 import Registration from "../pages/Registration";
 import Login from "../pages/Login";
+import TopRating from "../pages/TopRating";
 
 const App: React.FunctionComponent = () => {
   const [language, setLanguage] = useState(Language.English);
@@ -53,6 +54,9 @@ const App: React.FunctionComponent = () => {
                 </Route>
                 <Route exact path={routes.SING_IN}>
                   {isAuthenticated ? <Redirect to="/" /> : <Login />}
+                </Route>
+                <Route exact path={routes.TOP_PLACE_RATING}>
+                  <TopRating />
                 </Route>
               </Switch>
             </Container>
