@@ -58,11 +58,11 @@
       font-weight: bold;
     }
   }
-  
+
   &__authbar {
     margin-left: 0.75rem;
     display: flex;
-    width: 12rem;
+    width: 14rem;
     justify-content: flex-end;
     align-items: center;
     column-gap: 10px;
@@ -75,7 +75,10 @@
     }
 
     &-user {
+      width: 5rem;
+      overflow: hidden;
       text-align: center;
+      text-overflow: ellipsis;
     }
 
     &-avatar {

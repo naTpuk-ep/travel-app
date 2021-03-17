@@ -2,35 +2,40 @@
   padding: 0.5rem 0;
   display: flex;
   justify-content: space-between;
+
   & .authors {
     margin: auto 0;
   }
+
   & .logo {
     width: 100px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
   }
+
   & .year {
     display: flex;
     align-items: flex-end;
     margin-right: 20px;
-    margin-bottom: 10px;
-    font-size: 12px;
-    font-weight: 100;
+    margin-bottom: 10px;    
   }
 }
 
 @media (max-width: 991px) {
   .footer {
+    font-size: 14px;
+    
     & .nav {
       flex-direction: column;
     }
+    
     & .nav-link {
       padding: 0;
     }
+
     & .year {
-      margin-bottom: 0;
+      margin-bottom: 0;      
     }
   }
 }
