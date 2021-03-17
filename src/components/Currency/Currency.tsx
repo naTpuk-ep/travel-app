@@ -97,7 +97,12 @@ const Currency: FC<IcurrencyProps> = ({ localCurrency }: IcurrencyProps) => {
     >
       {displayRates ? (
         <>
-          <h5>{`${LOCALIZATIONS.currency[language]}: ${localCurrency}`}</h5>
+          <span className={`title min-${minimized}-title`}>
+            <h5>{`${LOCALIZATIONS.currency[language]}: ${localCurrency}`}</h5>
+          </span>
+          <span className={`min-title min-${minimized}-title`}>
+            {localCurrency}
+          </span>
           {Object.keys(displayRates).map((key: string, i: number) => (
             <div className="currency__item" key={i}>
               <span>{`1 ${localCurrency}`}</span>

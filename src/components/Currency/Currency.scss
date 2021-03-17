@@ -1,4 +1,4 @@
-$shadow-sm: 0 .125rem .25rem rgba(0,0,0,.075);
+$shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
 
 .currency {
   box-shadow: $shadow-sm;
@@ -27,7 +27,15 @@ $shadow-sm: 0 .125rem .25rem rgba(0,0,0,.075);
     display: flex;
     justify-content: space-between;
     margin-left: 20%;
-  }  
+  }
+}
+
+.title {
+  display: block;
+}
+
+.min-title {
+  display: none;
 }
 
 .error {
@@ -35,10 +43,28 @@ $shadow-sm: 0 .125rem .25rem rgba(0,0,0,.075);
 }
 
 @media (max-width: 992px) {
+  .title {
+    display: none;
+
+    &.min-minimized-title {
+      display: none;
+    }
+    &.min--title {
+      display: block;
+    }
+  }
+  .min-title {
+    &.min-minimized-title {
+      display: block;
+    }
+    &.min--title {
+      display: none;
+    }
+  }
   .minimized {
     cursor: pointer;
-    width: 50px;
-    height: 50px;
+    width: 55px;
+    height: 55px;
     overflow: hidden;
 
     & h5 {
