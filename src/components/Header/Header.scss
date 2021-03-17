@@ -11,16 +11,30 @@
     transition: all 0.25s ease;
     &:hover {
       cursor: pointer;
-      font-weight: 900;
     }
   }
 
   &__logo {
     margin: 0;
     font-size: 2rem;
+    width: 13rem;
 
     &:hover {
       cursor: pointer;
+    }
+  }
+
+  &__search {
+    margin-right: auto;
+
+    @media (max-width: 992px) {
+      margin-top: 0.5rem;
+    }
+
+    @media (max-width: 576px) {
+      .btn {
+        margin-top: 0.5rem;
+      }
     }
   }
 
@@ -45,20 +59,22 @@
     }
   }
 
-  &__toprating {
-    &-link {
-      font-size: 16px;
-      text-decoration: underline;
-      &:hover {
-        cursor: pointer;
-        opacity: 0.8;
-      }
-    }
-  }
+  // &__toprating {
+  //   &-link {
+  //     font-size: 16px;
+  //     text-decoration: underline;
+  //     &:hover {
+  //       cursor: pointer;
+  //       opacity: 0.8;
+  //     }
+  //   }
+  // }
 
   &__authbar {
     margin-left: 0.75rem;
     display: flex;
+    width: 12rem;
+    justify-content: flex-end;
     align-items: center;
     column-gap: 10px;
     font-size: 20px;
@@ -66,6 +82,7 @@
     @media (max-width: 992px) {
       margin-top: 0.5rem;
       margin-left: 0;
+      justify-content: flex-start;
     }
 
     &-user {
@@ -80,6 +97,7 @@
     &-link {
       font-size: 16px;
       text-decoration: underline;
+      margin-right: 0.5rem;
 
       &.signout {
         color: inherit;
