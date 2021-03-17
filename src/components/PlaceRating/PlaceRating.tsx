@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import StarRatings from "react-star-ratings";
 import { Button, Form, Spinner } from "react-bootstrap";
 import useHttp from "../../hooks/http.hook";
+import LOCALIZATIONS from "../../assets/data/localizations";
+import LocalizationContext from "../../context/LocalizationContext";
 import "./PlaceRating.scss";
 import Loader from "../Loader";
 import AuthContext from "../../context/AuthContext";
@@ -31,6 +33,7 @@ const PlaceRating: React.FunctionComponent<IPlaceRatingParams> = (
   props: IPlaceRatingParams
 ) => {
   const { placeId } = props;
+  const language = useContext(LocalizationContext);
   const { loading, request } = useHttp();
   const [ratings, setRatings] = useState<IRating[]>([]);
   const [ratingForm, setRatingForm] = useState({
@@ -103,7 +106,9 @@ const PlaceRating: React.FunctionComponent<IPlaceRatingParams> = (
               {capitalizeFirstLetter(auth.name)}
             </div>
             <div className="rating-container__record-email">({auth.email})</div>
-            <div className="rating-container__record-date">You</div>
+            <div className="rating-container__record-date">
+              {LOCALIZATIONS.photoGallery.you[language]}
+            </div>
           </div>
           <StarRatings
             rating={ratingForm.rating}
@@ -115,7 +120,10 @@ const PlaceRating: React.FunctionComponent<IPlaceRatingParams> = (
             name="rating"
           />
           <Form.Group controlId="ratingComment">
-            <Form.Label>Comment:</Form.Label>
+            <Form.Label>
+              {" "}
+              {LOCALIZATIONS.photoGallery.comment[language]}:
+            </Form.Label>
             <Form.Control
               onChange={changeHandler}
               name="comment"
@@ -125,7 +133,7 @@ const PlaceRating: React.FunctionComponent<IPlaceRatingParams> = (
               maxLength={60}
             />
             <Form.Text className="text-muted">
-              Leave short comment (60 characters)
+              {LOCALIZATIONS.photoGallery.commentDescription[language]}
             </Form.Text>
           </Form.Group>
           <Button
@@ -141,7 +149,7 @@ const PlaceRating: React.FunctionComponent<IPlaceRatingParams> = (
                 <Spinner animation="border" />
               </div>
             ) : (
-              "Publish"
+              LOCALIZATIONS.photoGallery.publish[language]
             )}
           </Button>
         </div>
@@ -149,7 +157,10 @@ const PlaceRating: React.FunctionComponent<IPlaceRatingParams> = (
         <div className="rating-container__record">
           <div className="rating-container__record-header">
             <div className="rating-container__record-link">
-              To leave rating please <Link to="/signin">Sign In</Link>
+              {LOCALIZATIONS.photoGallery.leaveRating[language]}{" "}
+              <Link to="/signin">
+                {LOCALIZATIONS.photoGallery.login[language]}
+              </Link>
             </div>
           </div>
         </div>
