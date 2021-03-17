@@ -1,4 +1,4 @@
-$shadow-sm: 0 .125rem .25rem rgba(0,0,0,.075);
+$shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
 
 .currency {
   box-shadow: $shadow-sm;
@@ -27,7 +27,7 @@ $shadow-sm: 0 .125rem .25rem rgba(0,0,0,.075);
     display: flex;
     justify-content: space-between;
     margin-left: 20%;
-  }  
+  }
 }
 
 .error {
@@ -44,7 +44,7 @@ $shadow-sm: 0 .125rem .25rem rgba(0,0,0,.075);
     & h5 {
       line-height: 1.8;
       text-align: center;
-      margin-top: -110px;
+      margin-top: -150px;
     }
 
     & .loader {
