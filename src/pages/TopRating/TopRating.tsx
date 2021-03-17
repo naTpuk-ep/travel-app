@@ -35,6 +35,7 @@ const TopRating: React.FunctionComponent = () => {
 
   return (
     <>
+      <h1>Top 10 places</h1>
       {loading ? (
         <Loader />
       ) : (
