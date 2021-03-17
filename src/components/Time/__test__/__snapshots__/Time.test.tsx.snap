@@ -8,7 +8,7 @@ exports[`should render time should render time component 1`] = `
     17 M03 Wed
   </h6>
   <h2>
-    15:10:43
+    15:12:13
   </h2>
 </div>
 `;

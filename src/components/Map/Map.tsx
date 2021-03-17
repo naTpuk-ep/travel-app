@@ -62,17 +62,13 @@ class Map extends React.Component<IMapProps> {
     return (
       <div className="map-container">
         <Button
-          variant="dark"
+          variant="white"
           className="fullscreen-btn"
           onClick={(e) => {
             this.fullScreen(e);
           }}
         >
-          <img
-            src={fullScreenImage}
-            alt="fullScreen"
-            className="fullscreen-btn-image"
-          />
+          <span className="fullscreen-btn-span">⇲</span>
         </Button>
         <MapContainer
           center={position}

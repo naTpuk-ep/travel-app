@@ -11,13 +11,25 @@
 }
 
 .fullscreen-btn {
-  margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
-  right: 0;
-  top: 0;
+  border: 2px solid rgba(163, 163, 163, 0.8);
+  background: white;
+  width: 32px;
+  height: 30px;
+  margin: 10px;
+  right: 0px;
+  top: 0px;
   z-index: 999;
 }
 .fullscreen-btn-image {
   width: 20px;
   height: 20px;
+}
+.fullscreen-btn-span {
+  background: white;
+  color: black;
+  font-size: 16px;
 }
