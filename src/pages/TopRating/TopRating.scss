@@ -1,0 +1,13 @@
+.rating-card {
+  font-size: 14px;
+  &__title {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @media (max-width: 576px) {
+      grid-template-columns: repeat(1, auto);
+      flex-direction: column;
+    }
+  }
+}

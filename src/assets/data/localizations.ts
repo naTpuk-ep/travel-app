@@ -20,6 +20,11 @@ const LOCALIZATIONS = {
       ru: "Выйти",
       de: "Ausloggen",
     },
+    topPlaces: {
+      en: "Top 10 places",
+      ru: "10 лучших мест",
+      de: "Top 10 Plätze",
+    },
   },
   main: {
     countryCard: {
@@ -62,6 +67,23 @@ const LOCALIZATIONS = {
       en: "Sing In",
       ru: "Войти",
       de: "Einloggen",
+    },
+  },
+  topRating: {
+    avarageRating: {
+      en: "average rating",
+      ru: "средний рейтинг",
+      de: "durchschnittliche Bewertung",
+    },
+    basedOn: {
+      en: "based on",
+      ru: "на основе",
+      de: "basierend auf",
+    },
+    reviews: {
+      en: "reviews",
+      ru: "отзыва(-ов)",
+      de: "Bewertungen",
     },
   },
   photoGallery: {

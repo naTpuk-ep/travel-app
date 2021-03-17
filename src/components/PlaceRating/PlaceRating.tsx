@@ -12,6 +12,7 @@ import AuthContext from "../../context/AuthContext";
 
 interface IPlaceRatingParams {
   placeId: string;
+  isCommentable: boolean;
 }
 
 interface IRating {
@@ -32,7 +33,7 @@ interface IRating {
 const PlaceRating: React.FunctionComponent<IPlaceRatingParams> = (
   props: IPlaceRatingParams
 ) => {
-  const { placeId } = props;
+  const { placeId, isCommentable } = props;
   const language = useContext(LocalizationContext);
   const { loading, request } = useHttp();
   const [ratings, setRatings] = useState<IRating[]>([]);
@@ -99,71 +100,79 @@ const PlaceRating: React.FunctionComponent<IPlaceRatingParams> = (
 
   return (
     <div className="rating-container">
-      {auth.isAuthenticated ? (
-        <div className="rating-container__record">
-          <div className="rating-container__record-header">
-            <div className="rating-container__record-name">
-              {capitalizeFirstLetter(auth.name)}
-            </div>
-            <div className="rating-container__record-email">({auth.email})</div>
-            <div className="rating-container__record-date">
-              {LOCALIZATIONS.photoGallery.you[language]}
-            </div>
-          </div>
-          <StarRatings
-            rating={ratingForm.rating}
-            starRatedColor="Orange"
-            starDimension="35px"
-            starSpacing="1px"
-            changeRating={changeRatingHandler}
-            numberOfStars={5}
-            name="rating"
-          />
-          <Form.Group controlId="ratingComment">
-            <Form.Label>
-              {" "}
-              {LOCALIZATIONS.photoGallery.comment[language]}:
-            </Form.Label>
-            <Form.Control
-              onChange={changeHandler}
-              name="comment"
-              as="textarea"
-              className="rating-container__record-commentarea"
-              rows={3}
-              maxLength={60}
-            />
-            <Form.Text className="text-muted">
-              {LOCALIZATIONS.photoGallery.commentDescription[language]}
-            </Form.Text>
-          </Form.Group>
-          <Button
-            block
-            size="sm"
-            onClick={publishRatingHandler}
-            disabled={loading}
-            variant="primary"
-            type="submit"
-          >
-            {loading ? (
-              <div className="loader-sm-comment">
-                <Spinner animation="border" />
+      {isCommentable ? (
+        <>
+          {auth.isAuthenticated ? (
+            <div className="rating-container__record">
+              <div className="rating-container__record-header">
+                <div className="rating-container__record-name">
+                  {capitalizeFirstLetter(auth.name)}
+                </div>
+                <div className="rating-container__record-email">
+                  ({auth.email})
+                </div>
+                <div className="rating-container__record-date">
+                  {LOCALIZATIONS.photoGallery.you[language]}
+                </div>
               </div>
-            ) : (
-              LOCALIZATIONS.photoGallery.publish[language]
-            )}
-          </Button>
-        </div>
-      ) : (
-        <div className="rating-container__record">
-          <div className="rating-container__record-header">
-            <div className="rating-container__record-link">
-              {LOCALIZATIONS.photoGallery.leaveRating[language]}{" "}
-              <Link to="/signin">
-                {LOCALIZATIONS.photoGallery.login[language]}
-              </Link>
+              <StarRatings
+                rating={ratingForm.rating}
+                starRatedColor="Orange"
+                starDimension="35px"
+                starSpacing="1px"
+                changeRating={changeRatingHandler}
+                numberOfStars={5}
+                name="rating"
+              />
+              <Form.Group controlId="ratingComment">
+                <Form.Label>
+                  {" "}
+                  {LOCALIZATIONS.photoGallery.comment[language]}:
+                </Form.Label>
+                <Form.Control
+                  onChange={changeHandler}
+                  name="comment"
+                  as="textarea"
+                  className="rating-container__record-commentarea"
+                  rows={3}
+                  maxLength={60}
+                />
+                <Form.Text className="text-muted">
+                  {LOCALIZATIONS.photoGallery.commentDescription[language]}
+                </Form.Text>
+              </Form.Group>
+              <Button
+                block
+                size="sm"
+                onClick={publishRatingHandler}
+                disabled={loading}
+                variant="primary"
+                type="submit"
+              >
+                {loading ? (
+                  <div className="loader-sm-comment">
+                    <Spinner animation="border" />
+                  </div>
+                ) : (
+                  LOCALIZATIONS.photoGallery.publish[language]
+                )}
+              </Button>
             </div>
-          </div>
-        </div>
+          ) : (
+            <div className="rating-container__record">
+              <div className="rating-container__record-header">
+                <div className="rating-container__record-link">
+                  {LOCALIZATIONS.photoGallery.leaveRating[language]}{" "}
+                  <Link to="/signin">
+                    {LOCALIZATIONS.photoGallery.login[language]}
+                  </Link>
+                </div>
+              </div>
+            </div>
+          )}
+        </>
+      ) : (
+        ""
       )}
 
       {loading ? (
