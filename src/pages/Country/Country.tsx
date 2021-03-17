@@ -4,6 +4,8 @@ import axios from "axios";
 import ICountryData from "../../models/country-data";
 import Loader from "../../components/Loader";
 import CountryDescription from "../../components/CountryDescription";
+import Video from "../../components/Video";
+import Map from "../../components/Map";
 
 interface ICountryPageParams {
   countryId: string;
@@ -32,6 +34,7 @@ const CountryPage: React.FunctionComponent = () => {
       {isLoad ? (
         <div className="country-page">
           <CountryDescription countryData={countryData} />
+          <Video url={countryData?.videoUrl} />
           <Map countryData={countryData} />
         </div>
       ) : (

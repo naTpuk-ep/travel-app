@@ -3,26 +3,19 @@ import "leaflet/dist/leaflet.css";
 import { MapContainer, Marker, TileLayer, Popup, Polygon } from "react-leaflet";
 import React from "react";
 import { Button } from "react-bootstrap";
-import FullscreenIcon from "@material-ui/icons/Fullscreen";
 import ICountryData from "../../models/country-data";
 import "./Map.scss";
-import cData from "../../assets/geoJson/countries";
-import marketImg from "../../assets/images/marker.png";
+import geoData from "../../assets/geoJson/countries";
+import markerIcon from "../../assets/images/marker.png";
+import fullScreenImage from "../../assets/images/fullscreen.png";
 
-interface IProps {
+interface IMapProps {
   countryData: ICountryData | undefined;
 }
 
-interface IState {
-  latitude: number;
-  longitude: number;
-  // eslint-disable-next-line
-  data: any;
-}
-
-class Map extends React.Component<IProps, IState> {
+class Map extends React.Component<IMapProps> {
   icon: L.DivIcon = L.icon({
-    iconUrl: marketImg,
+    iconUrl: markerIcon,
     iconSize: [30, 40],
     iconAnchor: [15, 40],
     popupAnchor: [15, 0],
@@ -53,7 +46,7 @@ class Map extends React.Component<IProps, IState> {
     } = countryData!;
     const latitude = coordinates[0];
     const longitude = coordinates[1];
-    const copyObj = JSON.parse(JSON.stringify(cData));
+    const copyObj = JSON.parse(JSON.stringify(geoData));
     // eslint-disable-next-line
     const info: any = copyObj;
     // eslint-disable-next-line
@@ -68,17 +61,19 @@ class Map extends React.Component<IProps, IState> {
     const position: LatLngExpression = [latitude, longitude];
     return (
       <div className="map-container">
-        <>
-          <Button
-            variant="dark"
-            className="fullscreen-btn"
-            onClick={(e) => {
-              this.fullScreen(e);
-            }}
-          >
-            <FullscreenIcon>icon</FullscreenIcon>
-          </Button>
-        </>
+        <Button
+          variant="dark"
+          className="fullscreen-btn"
+          onClick={(e) => {
+            this.fullScreen(e);
+          }}
+        >
+          <img
+            src={fullScreenImage}
+            alt="fullScreen"
+            className="fullscreen-btn-image"
+          />
+        </Button>
         <MapContainer
           center={position}
           zoom={this.zoom}
