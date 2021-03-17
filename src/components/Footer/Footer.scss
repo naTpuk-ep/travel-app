@@ -7,5 +7,19 @@
   }
   & .logo {
     width: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 991px) {
+  .footer {
+    & .nav {
+      flex-direction: column;
+    }
+    & .nav-link {
+      padding: 0;
+    }
   }
 }

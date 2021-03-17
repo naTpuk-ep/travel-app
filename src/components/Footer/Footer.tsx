@@ -9,15 +9,6 @@ const Footer: React.FunctionComponent = () => {
   return (
     <Container>
       <div className="footer">
-        {/* <h5>{`${LOCALIZATIONS.authors[language]}:`} </h5> */}
-        {/* <ul>
-          <li>
-            <a href="https://github.com/DmitryAstapenko">DmitryAstapenko</a>
-            <a href="https://github.com/RamanNovikau">RamanNovikau</a>
-            <a href="https://github.com/naTpuk-ep">YauheniPiatrou</a>
-            <a href="https://github.com/zhenyamarinovich">ZhenyaMarinovich</a>
-          </li>
-        </ul> */}
         <Nav className="mr-auto">
           <h5 className="authors">{`${LOCALIZATIONS.authors[language]}:`}</h5>
           &nbsp; &nbsp;
