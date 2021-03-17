@@ -1,10 +1,18 @@
 /* eslint-disable no-nested-ternary */
 /* eslint-disable react/no-array-index-key */
-/* eslint-disable no-console */
 import axios from "axios";
-import React, { createRef, FC, useCallback, useEffect, useState } from "react";
+import React, {
+  createRef,
+  FC,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
+import { Spinner } from "react-bootstrap";
+import LOCALIZATIONS from "../../assets/data/localizations";
 import CurrencyConverts from "../../constants/currencyConverts";
-import Loader from "../Loader";
+import LocalizationContext from "../../context/LocalizationContext";
 import "./Currency.scss";
 
 interface ICurrencies {
@@ -18,6 +26,7 @@ interface IcurrencyProps {
 const Currency: FC<IcurrencyProps> = ({ localCurrency }: IcurrencyProps) => {
   const [displayRates, setDisplayRates] = useState<ICurrencies>();
   const [error, setError] = useState<string | null>();
+  const language = useContext(LocalizationContext);
 
   const roundRatesValues = (value: number) => {
     let roundCoefficient = 100;
@@ -44,7 +53,7 @@ const Currency: FC<IcurrencyProps> = ({ localCurrency }: IcurrencyProps) => {
         .get(`https://api.exchangeratesapi.io/latest?base=${base}`)
         .then((response) => response.data)
         .catch(() => {
-          setError("Error loading currency information");
+          setError("Error loading currency data");
         });
       if (data) {
         const { rates } = data;
@@ -55,7 +64,7 @@ const Currency: FC<IcurrencyProps> = ({ localCurrency }: IcurrencyProps) => {
     if (localCurrency) {
       getRates(localCurrency);
     } else {
-      setError("Error loading currency information");
+      setError("Error loading currency data");
     }
   }, [localCurrency, selectRates]);
 
@@ -84,12 +93,11 @@ const Currency: FC<IcurrencyProps> = ({ localCurrency }: IcurrencyProps) => {
       role="button"
       tabIndex={0}
       onClick={clickHandler}
-      // className=""
       className={`currency ${minimized}`}
     >
       {displayRates ? (
         <>
-          <h5>{`Local currency: ${localCurrency}`}</h5>
+          <h5>{`${LOCALIZATIONS.currency[language]}: ${localCurrency}`}</h5>
           {Object.keys(displayRates).map((key: string, i: number) => (
             <div className="currency__item" key={i}>
               <span>{`1 ${localCurrency}`}</span>
@@ -101,7 +109,9 @@ const Currency: FC<IcurrencyProps> = ({ localCurrency }: IcurrencyProps) => {
       ) : error && !minimized ? (
         <h6 className="error">{error}</h6>
       ) : (
-        <Loader />
+        <div className="mini-loader">
+          <Spinner animation="border" />
+        </div>
       )}
     </div>
   );

@@ -1,43 +1,66 @@
-$shadow-sm: 0 .125rem .25rem rgba(0,0,0,.075);
+$shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
 
 .weather {
+  position: relative;
   box-shadow: $shadow-sm;
-  height: 160px;
+  height: 140px;
   outline: none;
   cursor: default;
-  transition: all 0.5s ease-in-out;
   opacity: 0.8;
-  & h2 {
-    display: none;
+  display: flex;
+  width: 260px;
+  background: #fff;
+  border-radius: 5px;
+  & .error {
+    color: red;
   }
-  & .date-0-2-10,
-  .date-d5-0-2-21,
-  .hr-0-2-15 {
-    display: none;
+  & h4 {
+    font-size: 15px;
+    margin: 0;
   }
-  & .left-0-2-4 {
+  & h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 10px;
+  }
+  &__left {
+    width: 60%;
     padding: 10px;
+  }
+  &__right {
+    width: 42%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    background: #0000001f;
+    text-align: center;
+    padding: 10px;
+    margin: 0;
+  }
+  & p {
+    margin: 0;
+    font-size: 13px;
   }
 }
 
 @media (max-width: 992px) {
-  .minimized {
-    cursor: pointer;
+  .weather.minimized {
+    width: 50px;
     height: 50px;
-    svg {
-      fill: black;
-      height: 100%;
-      margin-top: 7px;
-    }
-    .main-0-2-2 {
-      width: 50px;
-      height: 50px;
-    }
-    .left-0-2-4 {
+    & .weather__left {
       display: none;
     }
-    .right-0-2-5 {
-      width: 100%;
+    & .weather__right {
+      background: none;
+      transform: scale(0.6) translate(23px, 0);
+      padding: 0;
+    }
+
+    cursor: pointer;
+    height: 50px;
+    h4 {
+      display: none;
     }
   }
 }

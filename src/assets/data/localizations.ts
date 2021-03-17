@@ -1,4 +1,26 @@
 const LOCALIZATIONS = {
+  weather: {
+    humidity: {
+      ru: "Влажность",
+      en: "Humidity",
+      de: "Feuchtigkeit",
+    },
+    windSpeed: {
+      ru: "Ветер",
+      en: "Wind",
+      de: "Windstärke",
+    },
+    units: {
+      ru: "м/с",
+      en: "m/s",
+      de: "m/s",
+    },
+  },
+  currency: {
+    en: "Currency",
+    ru: "Валюта",
+    de: "Währung",
+  },
   header: {
     logo: {
       en: "Travels",
