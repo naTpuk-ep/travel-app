@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render footer component should render footer component 1`] = `
+<Container
+  fluid={false}
+>
+  <div
+    className="footer"
+  >
+    Footer
+  </div>
+</Container>
+`;
