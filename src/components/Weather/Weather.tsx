@@ -88,7 +88,9 @@ const Weather: FC<IWeatherProps> = ({ countryData }: IWeatherProps) => {
       {weatherData ? (
         <>
           <div className="weather__left">
-            <h1>{`${Math.round(weatherData.temp)} ℃`} </h1>
+            <span className="weather__degrees">{`${Math.round(
+              weatherData.temp
+            )} ℃`}</span>
             <p>{`${LOCALIZATIONS.weather.humidity[language]}: ${weatherData.humidity} %`}</p>
             <p>{`${LOCALIZATIONS.weather.windSpeed[language]}: ${weatherData.wind.speed} ${LOCALIZATIONS.weather.units[language]}`}</p>
           </div>
