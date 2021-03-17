@@ -74,7 +74,7 @@ const PlaceRating: React.FunctionComponent<IPlaceRatingParams> = (
   const publishRatingHandler = async () => {
     try {
       const data = await request(
-        "https://rnovikov-travel-app-backend.herokuapp.com/rating/publish",
+        "http://localhost:3000/rating/publish",
         "POST",
         {
           ...{
@@ -83,6 +83,8 @@ const PlaceRating: React.FunctionComponent<IPlaceRatingParams> = (
             date: Date.now(),
             comment: ratingForm.comment,
             rating: ratingForm.rating,
+            email: auth.email,
+            token: auth.token,
           },
         }
       );
@@ -94,6 +96,9 @@ const PlaceRating: React.FunctionComponent<IPlaceRatingParams> = (
       ];
       setRatings([...ratings, data.publishRating]);
     } catch (e) {
+      if (e.response.data.message) {
+        auth.logout();
+      }
       getRatings();
     }
   };
