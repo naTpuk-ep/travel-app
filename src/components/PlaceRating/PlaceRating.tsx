@@ -74,7 +74,7 @@ const PlaceRating: React.FunctionComponent<IPlaceRatingParams> = (
   const publishRatingHandler = async () => {
     try {
       const data = await request(
-        "http://localhost:3000/rating/publish",
+        "https://rnovikov-travel-app-backend.herokuapp.com/rating/publish",
         "POST",
         {
           ...{
