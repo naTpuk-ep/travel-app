@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Form, Button, Card } from "react-bootstrap";
+import { Form, Button, Card, Spinner } from "react-bootstrap";
 import LOCALIZATIONS from "../../assets/data/localizations";
 import AuthContext from "../../context/AuthContext";
 import LocalizationContext from "../../context/LocalizationContext";
@@ -32,7 +32,13 @@ const Login: React.FunctionComponent = () => {
           ...form,
         }
       );
-      auth.login(data.token, data.userId, data.name, data.userImage);
+      auth.login(
+        data.token,
+        data.userId,
+        data.name,
+        data.email,
+        data.userImage
+      );
     } catch (e) {
       setErrors(e.response.data.message as LoginErrors);
     }
@@ -79,7 +85,13 @@ const Login: React.FunctionComponent = () => {
             variant="primary"
             type="submit"
           >
-            {LOCALIZATIONS.login.singIn[language]}
+            {loading ? (
+              <div className="loader-sm">
+                <Spinner animation="border" />
+              </div>
+            ) : (
+              LOCALIZATIONS.login.singIn[language]
+            )}
           </Button>
         </Form>
       </Card>

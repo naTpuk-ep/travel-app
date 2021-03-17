@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import ImageUploader from "react-images-upload";
-import { Form, Button, Card } from "react-bootstrap";
+import { Form, Button, Card, Spinner } from "react-bootstrap";
 import useHttp from "../../hooks/http.hook";
 import "./Registration.scss";
 import AuthContext from "../../context/AuthContext";
@@ -37,7 +37,13 @@ const Registration: React.FunctionComponent = () => {
         "POST",
         { ...form }
       );
-      auth.login(data.token, data.userId, data.name, data.userImage);
+      auth.login(
+        data.token,
+        data.userId,
+        data.name,
+        data.email,
+        data.userImage
+      );
     } catch (e) {
       setErrors(e.response.data.message as RegistratinErrors);
       if (e.response.data.errors) {
@@ -135,7 +141,13 @@ const Registration: React.FunctionComponent = () => {
             variant="primary"
             type="submit"
           >
-            {LOCALIZATIONS.registration.create[language]}
+            {loading ? (
+              <div className="loader-sm">
+                <Spinner animation="border" />
+              </div>
+            ) : (
+              LOCALIZATIONS.registration.create[language]
+            )}
           </Button>
         </Form>
       </Card>
