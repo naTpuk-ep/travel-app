@@ -35,7 +35,7 @@ const TopRating: React.FunctionComponent = () => {
 
   return (
     <>
-      <h1>Top 10 places</h1>
+      <h2>{LOCALIZATIONS.topRating.header[language]}</h2>
       {loading ? (
         <Loader />
       ) : (

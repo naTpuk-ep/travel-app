@@ -76,7 +76,7 @@ const Registration: React.FunctionComponent = () => {
               onChange={changeHandler}
               name="email"
               type="email"
-              placeholder="Enter email"
+              placeholder={LOCALIZATIONS.registration.inputEmail[language]}
               isInvalid={!!findError("email")}
             />
             <Form.Text className="text-danger txt-lg mb-2">
@@ -92,7 +92,7 @@ const Registration: React.FunctionComponent = () => {
               onChange={changeHandler}
               name="name"
               type="text"
-              placeholder="Enter name"
+              placeholder={LOCALIZATIONS.registration.inputName[language]}
               isInvalid={!!findError("name")}
             />
             <Form.Text className="text-danger txt-lg mb-2">
@@ -110,7 +110,7 @@ const Registration: React.FunctionComponent = () => {
               onChange={changeHandler}
               name="password"
               type="password"
-              placeholder="Password"
+              placeholder={LOCALIZATIONS.registration.inputPassword[language]}
               isInvalid={!!findError("password")}
             />
             <Form.Text className="text-danger txt-lg mb-2">
@@ -123,8 +123,8 @@ const Registration: React.FunctionComponent = () => {
             withPreview
             singleImage
             withIcon
-            label="Max file size: 5mb, accepted: jpg|gif|png"
-            buttonText="Choose images"
+            label={LOCALIZATIONS.registration.image[language]}
+            buttonText={LOCALIZATIONS.registration.choose[language]}
             onChange={onDrop}
             imgExtension={[".jpg", ".gif", ".png", ".gif"]}
             maxFileSize={5242880}

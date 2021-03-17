@@ -58,7 +58,7 @@ const Login: React.FunctionComponent = () => {
               onChange={changeHandler}
               name="email"
               type="email"
-              placeholder="Enter email"
+              placeholder={LOCALIZATIONS.registration.inputEmail[language]}
               isInvalid={!!errors}
             />
           </Form.Group>
@@ -71,7 +71,7 @@ const Login: React.FunctionComponent = () => {
               onChange={changeHandler}
               name="password"
               type="password"
-              placeholder="Password"
+              placeholder={LOCALIZATIONS.registration.inputPassword[language]}
               isInvalid={!!errors}
             />
           </Form.Group>

@@ -39,7 +39,7 @@ const LOCALIZATIONS = {
     },
     singUp: {
       en: "Sing up",
-      ru: "Зарегистрироваться",
+      ru: "Регистрация",
       de: "Anmelden",
     },
     singOut: {
@@ -75,7 +75,7 @@ const LOCALIZATIONS = {
   registration: {
     singUp: {
       en: "Sing Up",
-      ru: "Зарегистрироваться",
+      ru: "Регистрация",
       de: "Anmelden",
     },
     email: {
@@ -83,20 +83,45 @@ const LOCALIZATIONS = {
       ru: "Адрес электронной почты",
       de: "E-Mail-Addresse",
     },
+    inputEmail: {
+      en: "Enter email",
+      ru: "Введите адрес электронной почты",
+      de: "Email eingeben",
+    },
     name: {
       en: "Name",
       ru: "Имя",
       de: "Name",
+    },
+    inputName: {
+      en: "Enter name",
+      ru: "Введите имя",
+      de: "Name eingeben",
     },
     password: {
       en: "Password",
       ru: "Пароль",
       de: "Passwort",
     },
+    inputPassword: {
+      en: "Enter password",
+      ru: "Введите пароль",
+      de: "Passwort eingeben",
+    },
     create: {
       en: "Create profile",
       ru: "Создать профиль",
       de: "Profil erstellen",
+    },
+    image: {
+      en: "Max file size: 5mb, accepted: jpg | gif | png",
+      ru: "Максимальный размер файла: 5 МБ, разрешено: jpg | gif | png",
+      de: "Maximale Dateigröße: 5 MB, akzeptiert: jpg | gif | png",
+    },
+    choose: {
+      en: "Choose images",
+      ru: "Выбрать изображения",
+      de: "Wählen Sie Bilder",
     },
   },
   login: {
@@ -107,6 +132,11 @@ const LOCALIZATIONS = {
     },
   },
   topRating: {
+    header: {
+      en: "Top 10 places",
+      ru: "10 лучших мест",
+      de: "Top 10 Plätze",
+    },
     avarageRating: {
       en: "average rating",
       ru: "средний рейтинг",
