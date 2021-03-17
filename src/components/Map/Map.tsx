@@ -7,7 +7,6 @@ import ICountryData from "../../models/country-data";
 import "./Map.scss";
 import geoData from "../../assets/geoJson/countries";
 import markerIcon from "../../assets/images/marker.png";
-import fullScreenImage from "../../assets/images/fullscreen.png";
 
 interface IMapProps {
   countryData: ICountryData | undefined;
