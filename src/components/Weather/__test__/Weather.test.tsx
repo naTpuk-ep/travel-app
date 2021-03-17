@@ -44,7 +44,18 @@ describe("should render weather component", () => {
     };
     component = setUp({ countryData });
   });
+
   it("should render weather component", () => {
     expect(toJson(component)).toMatchSnapshot();
+  });
+
+  it("should contain div class weather", () => {
+    const weather = component.find(".weather");
+    expect(weather).toHaveLength(1);
+  });
+
+  it("should contain div with class minimized", () => {
+    const weather = component.find(".minimized");
+    expect(weather.length).toEqual(1);
   });
 });

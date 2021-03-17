@@ -9,13 +9,13 @@ exports[`should render map component should render map component 1`] = `
     className="fullscreen-btn"
     disabled={false}
     onClick={[Function]}
-    variant="dark"
+    variant="white"
   >
-    <img
-      alt="fullScreen"
-      className="fullscreen-btn-image"
-      src="fullscreen.png"
-    />
+    <span
+      className="fullscreen-btn-span"
+    >
+      ⇲
+    </span>
   </Button>
   <MapContainer
     center={
