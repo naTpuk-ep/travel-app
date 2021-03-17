@@ -10,12 +10,12 @@ import Loader from "../Loader";
 import useDidMountEffect from "../../hooks/useDidMountEffect.hook";
 import PlaceRating from "../PlaceRating";
 
-interface IPhotoGalleryParams {
+interface IPhotoGalleryProps {
   countryId: string;
 }
 
-const PhotoGallery: React.FunctionComponent<IPhotoGalleryParams> = (
-  props: IPhotoGalleryParams
+const PhotoGallery: React.FunctionComponent<IPhotoGalleryProps> = (
+  props: IPhotoGalleryProps
 ) => {
   const language = useContext(LocalizationContext);
   const { countryId } = props;
