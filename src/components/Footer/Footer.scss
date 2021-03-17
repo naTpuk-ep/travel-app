@@ -1,3 +1,11 @@
 .footer {
   padding: 0.5rem 0;
+  display: flex;
+  justify-content: space-between;
+  & .authors {
+    margin: auto 0;
+  }
+  & .logo {
+    width: 100px;
+  }
 }
