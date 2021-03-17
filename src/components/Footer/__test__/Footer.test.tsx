@@ -15,11 +15,6 @@ describe("should render footer component", () => {
     expect(wrapper.length).toBeLessThan(2);
   });
 
-  it("should contain footer text", () => {
-    const player = component.find(".footer");
-    expect(player.text()).toMatch("Footer");
-  });
-
   it("should render footer component", () => {
     expect(toJson(component)).toMatchSnapshot();
   });
