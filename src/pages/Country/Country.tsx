@@ -7,6 +7,7 @@ import CountryDescription from "../../components/CountryDescription";
 import PhotoGallery from "../../components/PhotoGallery";
 import Video from "../../components/Video";
 import Map from "../../components/Map";
+import "./Country.scss";
 
 interface ICountryPageParams {
   countryId: string;
