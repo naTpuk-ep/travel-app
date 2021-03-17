@@ -20,6 +20,16 @@ const LOCALIZATIONS = {
       ru: "Выйти",
       de: "Ausloggen",
     },
+    search: {
+      en: "Search",
+      ru: "Найти",
+      de: "Suche",
+    },
+    placeholder: {
+      en: "Enter text",
+      ru: "Введите текст",
+      de: "Text eingeben",
+    },
   },
   main: {
     countryCard: {

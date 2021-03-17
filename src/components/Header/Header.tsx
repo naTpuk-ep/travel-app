@@ -1,5 +1,12 @@
 import React, { ChangeEvent, useContext } from "react";
-import { Container, Form, Button, Image, Navbar } from "react-bootstrap";
+import {
+  Container,
+  Form,
+  Button,
+  Image,
+  Navbar,
+  FormControl,
+} from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import Language from "../../constants/languages";
 import LOCALIZATIONS from "../../assets/data/localizations";
@@ -39,6 +46,16 @@ const Header: React.FunctionComponent<IHeaderProps> = (props: IHeaderProps) => {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
+          <Form inline>
+            <FormControl
+              type="text"
+              placeholder={LOCALIZATIONS.header.placeholder[language]}
+              className="mr-sm-2"
+            />
+            <Button variant="outline-success">
+              {LOCALIZATIONS.header.search[language]}
+            </Button>
+          </Form>
           <Form.Control
             onChange={handleChangeSelect}
             as="select"
