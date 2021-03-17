@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render weather component should render weather component 1`] = `
+<div
+  className="weather minimized"
+  onClick={[Function]}
+  role="button"
+  tabIndex={0}
+>
+  <h
+    data={null}
+    errorMessage={null}
+    isLoading={true}
+    lang="en"
+    locationLabel="Rome"
+    showForecast={false}
+    theme={
+      Object {
+        "fontFamily": "Helvetica, sans-serif",
+        "gradientEnd": "white",
+        "gradientMid": "white",
+        "gradientStart": "white",
+        "locationFontColor": "black",
+        "todayDateFontColor": "black",
+        "todayDescFontColor": "black",
+        "todayIconColor": "black",
+        "todayInfoFontColor": "black",
+        "todayRangeFontColor": "black",
+        "todayTempFontColor": "black",
+      }
+    }
+    unitsLabels={
+      Object {
+        "temperature": "℃",
+        "windSpeed": "Km/h",
+      }
+    }
+  />
+</div>
+`;

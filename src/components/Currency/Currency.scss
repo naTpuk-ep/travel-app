@@ -34,14 +34,18 @@ $shadow-sm: 0 .125rem .25rem rgba(0,0,0,.075);
     height: 50px;
     overflow: hidden;
     & h5 {
+
       line-height: 1.8;
       text-align: center;
-      margin-top: -177px;
+      margin-top: -108px;
     }
     & .loader {
       transform: scale(0.5) translate(-20px, -40px);
       display: block;
       height: 5rem;
+    }
+    & .currency__item {
+      display: none;
     }
   }
 }

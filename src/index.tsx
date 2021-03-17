@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.scss";
 import { HashRouter } from "react-router-dom";
-// eslint-disable-next-line import/no-named-as-default
 import App from "./app/App";
 import reportWebVitals from "./reportWebVitals";
 import routes from "./constants/routes";

@@ -1,4 +1,4 @@
-$shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+$shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 
 .auth-wrapper {
   display: flex;
@@ -18,6 +18,13 @@ $shadow: 0 .5rem 1rem rgba(0,0,0,.15);
   @media (max-width: 576px) {
     width: 18rem;
   }
+}
+
+.loader-sm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
 }
 
 .txt-lg {

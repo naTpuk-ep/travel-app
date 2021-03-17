@@ -45,7 +45,18 @@
     }
   }
 
-  &__authbar{
+  &__toprating {
+    &-link {
+      font-size: 16px;
+      text-decoration: underline;
+      &:hover {
+        cursor: pointer;
+        opacity: 0.8;
+      }
+    }
+  }
+
+  &__authbar {
     margin-left: 0.75rem;
     display: flex;
     align-items: center;
@@ -57,24 +68,24 @@
       margin-left: 0;
     }
 
-    &-user{
+    &-user {
       text-align: center;
     }
 
-    &-avatar{
+    &-avatar {
       width: 3rem;
       height: 3rem;
     }
 
-    &-link{
+    &-link {
       font-size: 16px;
       text-decoration: underline;
 
-      &.signout{
+      &.signout {
         color: inherit;
         font-size: 16px;
-        &:visited{
-          text-decoration:none;
+        &:visited {
+          text-decoration: none;
         }
         &:active {
           text-decoration: none;
@@ -83,7 +94,7 @@
 
       &:hover {
         cursor: pointer;
-        opacity: .8;
+        opacity: 0.8;
       }
     }
   }

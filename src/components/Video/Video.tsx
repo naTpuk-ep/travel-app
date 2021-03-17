@@ -9,7 +9,7 @@ interface IVideoProps {
 const CountryDescription: FC<IVideoProps> = ({ url }: IVideoProps) => {
   return (
     <div className="video-container">
-      <ReactPlayer url={url} width="100%" controls />
+      <ReactPlayer url={url} width="100%" controls className="react-player" />
     </div>
   );
 };

@@ -1,0 +1,66 @@
+.rating-container {
+  margin: 0 auto;
+  width: 36rem;
+  max-height: 500px;
+  padding: 5px;
+  flex: 1;
+  display: flex;
+  overflow: auto;
+  flex-direction: column;
+  row-gap: 10px;
+  border: 1px solid #b3b3b3;
+
+  @media (max-width: 768px) {
+    width: 18rem;
+  }
+
+  &__record {
+    font-size: 14px;
+    padding: 5px 10px 15px 10px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: -1px 15px 15px -12px black;
+    background: #eeeeee;
+
+    &-header {
+      font-weight: bold;
+      display: flex;
+      position: relative;
+      align-items: center;
+    }
+    &-comment {
+      padding: 3px;
+      background: #e2e2e2;
+      border-radius: 5px;
+      font-style: italic;
+    }
+    &-link {
+      margin: auto;
+    }
+    &-commentarea {
+      resize: none;
+    }
+    &-email {
+      margin-left: 5px;
+      font-weight: normal;
+    }
+    &-date {
+      opacity: 0.8;
+      font-size: 14px;
+      font-weight: normal;
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+  }
+}
+
+.loader-sm-comment {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 21px;
+}
