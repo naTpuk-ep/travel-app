@@ -10,6 +10,7 @@ import AuthContext from "../../context/AuthContext";
 
 interface IPlaceRatingParams {
   placeId: string;
+  isCommentable: boolean;
 }
 
 interface IRating {
@@ -30,7 +31,7 @@ interface IRating {
 const PlaceRating: React.FunctionComponent<IPlaceRatingParams> = (
   props: IPlaceRatingParams
 ) => {
-  const { placeId } = props;
+  const { placeId, isCommentable } = props;
   const { loading, request } = useHttp();
   const [ratings, setRatings] = useState<IRating[]>([]);
   const [ratingForm, setRatingForm] = useState({
@@ -96,63 +97,71 @@ const PlaceRating: React.FunctionComponent<IPlaceRatingParams> = (
 
   return (
     <div className="rating-container">
-      {auth.isAuthenticated ? (
-        <div className="rating-container__record">
-          <div className="rating-container__record-header">
-            <div className="rating-container__record-name">
-              {capitalizeFirstLetter(auth.name)}
-            </div>
-            <div className="rating-container__record-email">({auth.email})</div>
-            <div className="rating-container__record-date">You</div>
-          </div>
-          <StarRatings
-            rating={ratingForm.rating}
-            starRatedColor="Orange"
-            starDimension="35px"
-            starSpacing="1px"
-            changeRating={changeRatingHandler}
-            numberOfStars={5}
-            name="rating"
-          />
-          <Form.Group controlId="ratingComment">
-            <Form.Label>Comment:</Form.Label>
-            <Form.Control
-              onChange={changeHandler}
-              name="comment"
-              as="textarea"
-              className="rating-container__record-commentarea"
-              rows={3}
-              maxLength={60}
-            />
-            <Form.Text className="text-muted">
-              Leave short comment (60 characters)
-            </Form.Text>
-          </Form.Group>
-          <Button
-            block
-            size="sm"
-            onClick={publishRatingHandler}
-            disabled={loading}
-            variant="primary"
-            type="submit"
-          >
-            {loading ? (
-              <div className="loader-sm-comment">
-                <Spinner animation="border" />
+      {isCommentable ? (
+        <>
+          {auth.isAuthenticated ? (
+            <div className="rating-container__record">
+              <div className="rating-container__record-header">
+                <div className="rating-container__record-name">
+                  {capitalizeFirstLetter(auth.name)}
+                </div>
+                <div className="rating-container__record-email">
+                  ({auth.email})
+                </div>
+                <div className="rating-container__record-date">You</div>
               </div>
-            ) : (
-              "Publish"
-            )}
-          </Button>
-        </div>
-      ) : (
-        <div className="rating-container__record">
-          <div className="rating-container__record-header">
-            <div className="rating-container__record-link">
-              To leave rating please <Link to="/signin">Sign In</Link>
+              <StarRatings
+                rating={ratingForm.rating}
+                starRatedColor="Orange"
+                starDimension="35px"
+                starSpacing="1px"
+                changeRating={changeRatingHandler}
+                numberOfStars={5}
+                name="rating"
+              />
+              <Form.Group controlId="ratingComment">
+                <Form.Label>Comment:</Form.Label>
+                <Form.Control
+                  onChange={changeHandler}
+                  name="comment"
+                  as="textarea"
+                  className="rating-container__record-commentarea"
+                  rows={3}
+                  maxLength={60}
+                />
+                <Form.Text className="text-muted">
+                  Leave short comment (60 characters)
+                </Form.Text>
+              </Form.Group>
+              <Button
+                block
+                size="sm"
+                onClick={publishRatingHandler}
+                disabled={loading}
+                variant="primary"
+                type="submit"
+              >
+                {loading ? (
+                  <div className="loader-sm-comment">
+                    <Spinner animation="border" />
+                  </div>
+                ) : (
+                  "Publish"
+                )}
+              </Button>
             </div>
-          </div>
-        </div>
+          ) : (
+            <div className="rating-container__record">
+              <div className="rating-container__record-header">
+                <div className="rating-container__record-link">
+                  To leave rating please <Link to="/signin">Sign In</Link>
+                </div>
+              </div>
+            </div>
+          )}
+        </>
+      ) : (
+        ""
       )}
 
       {loading ? (

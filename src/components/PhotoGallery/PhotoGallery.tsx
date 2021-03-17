@@ -84,7 +84,11 @@ const PhotoGallery: React.FunctionComponent<IPhotoGalleryParams> = (
               startIndex={imageIndex}
             />
           </div>
-          {placeId === "0" ? "" : <PlaceRating placeId={placeId} />}
+          {placeId === "0" ? (
+            ""
+          ) : (
+            <PlaceRating placeId={placeId} isCommentable />
+          )}
         </>
       )}
     </Card>

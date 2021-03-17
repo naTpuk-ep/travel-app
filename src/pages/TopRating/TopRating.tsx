@@ -41,7 +41,7 @@ const TopRating: React.FunctionComponent = () => {
         topRating.map((tRating, i) => {
           return (
             <>
-              <Card bg="light" key={nanoid()}>
+              <Card bg="light" className="rating-card" key={nanoid()}>
                 <Card.Title className="rating-card__title">
                   {i + 1} {tRating.localizations[language].name}{" "}
                   {LOCALIZATIONS.topRating.avarageRating[language]}
