@@ -20,6 +20,11 @@ const LOCALIZATIONS = {
       ru: "Выйти",
       de: "Ausloggen",
     },
+    topPlaces: {
+      en: "Top 10 places",
+      ru: "10 лучших мест",
+      de: "Top 10 Plätze",
+    },
   },
   main: {
     countryCard: {

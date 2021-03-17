@@ -40,7 +40,9 @@ const Header: React.FunctionComponent<IHeaderProps> = (props: IHeaderProps) => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <LinkContainer to={routes.TOP_PLACE_RATING}>
-            <div className="header__toprating-link">Top 10 places</div>
+            <div className="header__toprating-link">
+              {LOCALIZATIONS.header.topPlaces[language]}
+            </div>
           </LinkContainer>
           <Form.Control
             onChange={handleChangeSelect}
