@@ -26,6 +26,7 @@ const Footer: React.FunctionComponent = () => {
             ZhenyaMarinovich
           </Nav.Link>
         </Nav>
+        <span className="year">2021</span>
         <div className="logo">
           <a href="https://rs.school/js/">
             <img
