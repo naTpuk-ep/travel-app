@@ -11,6 +11,14 @@
     flex-direction: column;
     justify-content: flex-end;
   }
+  & .year {
+    display: flex;
+    align-items: flex-end;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    font-weight: 100;
+  }
 }
 
 @media (max-width: 991px) {
@@ -20,6 +28,9 @@
     }
     & .nav-link {
       padding: 0;
+    }
+    & .year {
+      margin-bottom: 0;
     }
   }
 }
